@@ -1,5 +1,5 @@
-// Stores one encrypted blob (the dashboard state). The server never sees plaintext.
-// Env vars: DASH_USER (default dafa-admin), DASH_KEY (password), BLOB_READ_WRITE_TOKEN (added by Vercel Blob store).
+// Stores the shared dashboard state in Vercel Blob. Public reads and writes are enabled.
+// Env var: BLOB_READ_WRITE_TOKEN (added by the connected Vercel Blob store).
 const PATH = 'eptts/state.bin';
 module.exports = async (req, res) => {
   const { put, list } = await import('@vercel/blob');
@@ -14,8 +14,6 @@ module.exports = async (req, res) => {
     return res.status(200).send(Buffer.from(await r.arrayBuffer()));
   }
   if (req.method === 'POST') {
-    if (!process.env.DASH_KEY || req.headers['x-key'] !== process.env.DASH_KEY || req.headers['x-user'] !== (process.env.DASH_USER || 'dafa-admin')) return res.status(401).end();
-    if (req.headers['x-check']) return res.status(200).end();
     const chunks = [];
     for await (const c of req) chunks.push(c);
     const body = Buffer.concat(chunks);
