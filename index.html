@@ -609,15 +609,16 @@ function pack(obj,code){var salt=crypto.getRandomValues(new Uint8Array(16)),iv=c
   return gz(te(JSON.stringify(obj)),true).then(function(z){return dk(code,salt).then(function(k){return crypto.subtle.encrypt({name:'AES-GCM',iv:iv},k,z)})}).then(function(c){var o=new Uint8Array(28+c.byteLength);o.set(salt,0);o.set(iv,16);o.set(new Uint8Array(c),28);return o})}
 function unpack(u8,code){var salt=u8.slice(0,16),iv=u8.slice(16,28),c=u8.slice(28);
   return dk(code,salt).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,c)}).then(function(z){return gz(new Uint8Array(z),false)}).then(function(u){return JSON.parse(new TextDecoder().decode(u))})}
-function persist(st){if(!SERVER){idb('set',st);return}
-  var body=te(JSON.stringify(st));fetch('/api/state',{method:'POST',headers:{'content-type':'application/octet-stream'},body:body})
-   .then(function(r){if(r.ok)PUBLIC_DATA=true;UPMSG=[r.ok?'تم الحفظ على الخادم، الداشبورد متاحة لكل من يفتح الرابط':(r.status===401?'بيانات الدخول غير صحيحة، لم يتم الحفظ':'تعذر الحفظ على الخادم ('+r.status+')')];if(location.hash==='#data'||!HAS)render()})
-   .catch(function(){UPMSG=['تعذر الاتصال بالخادم للحفظ'];render()})}
+function hosted(){return location.protocol==='https:'||/\.vercel\.app$/i.test(location.hostname)}
+function persist(st){if(!SERVER&&!hosted()){idb('set',st);UPMSG=['تم الحفظ على هذا الجهاز فقط؛ لا يوجد اتصال بخادم المشاركة'];return}
+  SERVER=true;var body=te(JSON.stringify(st));fetch('/api/state',{method:'POST',headers:{'content-type':'application/octet-stream'},body:body})
+   .then(function(r){if(r.ok)PUBLIC_DATA=true;UPMSG=[r.ok?'تم الحفظ على الخادم، ويمكن فتح الداشبورد من الأجهزة الأخرى':'فشل الحفظ المشترك على الخادم ('+r.status+')'];var m=$('actmsg');if(m)m.textContent=UPMSG[0];if(location.hash==='#data'||!HAS)render()})
+   .catch(function(){UPMSG=['تعذر الاتصال بالخادم؛ البيانات لم تُحفظ للمستخدمين الآخرين'];var m=$('actmsg');if(m)m.textContent=UPMSG[0];render()})}
 function loadRemote(){return fetch('/api/state',{cache:'no-store'}).then(function(r){
     SERVER=true;if(r.status===401){AUTH=false;return false}
     if(r.status===200){return r.arrayBuffer().then(function(b){RBYTES=new Uint8Array(b);try{var st=JSON.parse(new TextDecoder().decode(RBYTES));if(st&&st.D){RAW=st.tables||{};META=st.meta||{};setData(st.D);PUBLIC_DATA=true}}catch(e){}AUTH=true;return true})}
     if(r.status===204){PUBLIC_DATA=true;AUTH=true;return true}
-    AUTH=false;return false}).catch(function(){SERVER=false;AUTH=false;return false})}
+    UPMSG=['تعذر تحميل البيانات من الخادم ('+r.status+')'];AUTH=true;return false}).catch(function(){SERVER=hosted();AUTH=true;if(hosted())UPMSG=['تعذر الاتصال بخادم المشاركة'];return false})}
 function tryOpen(){if(!RBYTES||!KEY)return Promise.resolve(false);
   return unpack(RBYTES,KEY).then(function(st){RAW=st.tables||{};META=st.meta||{};if(st.D)setData(st.D);return true}).catch(function(){return false})}
 function unlock(code,user){if(!code||!user)return;UPMSG=['جاري التحقق...'];render();
@@ -773,6 +774,6 @@ function exportDoc(){var m=$('actmsg');
   catch(e){m.textContent='تعذر تجهيز الملف'}}
 $('asof').textContent='التتبع على مستوى العلبة · الأسعار بالجنيه المصري';
 render();dlInit();
-READY=loadRemote().then(function(){if(SERVER&&!PUBLIC_DATA&&RBYTES&&KEY)return tryOpen().then(function(ok){if(ok)persist({tables:RAW,meta:META,D:D})});if(!SERVER)return idb('get').then(function(st){if(st&&st.tables){RAW=st.tables;META=st.meta||{};if(st.D)setData(st.D)}})}).then(function(){AUTH=true;render()});
+READY=loadRemote().then(function(){if(SERVER&&!PUBLIC_DATA&&RBYTES&&KEY)return tryOpen().then(function(ok){if(ok)persist({tables:RAW,meta:META,D:D})});if(!SERVER)return idb('get').then(function(st){if(st&&st.tables){RAW=st.tables;META=st.meta||{};if(st.D)setData(st.D)}})}).then(function(){AUTH=true;render();if(UPMSG.length)$('actmsg').textContent=UPMSG[0]});
 </script>
 </body></html>
