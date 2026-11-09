@@ -610,7 +610,7 @@ function pack(obj,code){var salt=crypto.getRandomValues(new Uint8Array(16)),iv=c
 function unpack(u8,code){var salt=u8.slice(0,16),iv=u8.slice(16,28),c=u8.slice(28);
   return dk(code,salt).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,c)}).then(function(z){return gz(new Uint8Array(z),false)}).then(function(u){return JSON.parse(new TextDecoder().decode(u))})}
 function persist(st){if(!SERVER){idb('set',st);return}
-  var body=te(JSON.stringify(st));fetch('/api/state',{method:'POST',headers:{'x-user':USER,'x-key':KEY,'content-type':'application/octet-stream'},body:body})
+  var body=te(JSON.stringify(st));fetch('/api/state',{method:'POST',headers:{'content-type':'application/octet-stream'},body:body})
    .then(function(r){if(r.ok)PUBLIC_DATA=true;UPMSG=[r.ok?'تم الحفظ على الخادم، الداشبورد متاحة لكل من يفتح الرابط':(r.status===401?'بيانات الدخول غير صحيحة، لم يتم الحفظ':'تعذر الحفظ على الخادم ('+r.status+')')];if(location.hash==='#data'||!HAS)render()})
    .catch(function(){UPMSG=['تعذر الاتصال بالخادم للحفظ'];render()})}
 function loadRemote(){return fetch('/api/state',{cache:'no-store'}).then(function(r){
@@ -625,7 +625,6 @@ function unlock(code,user){if(!code||!user)return;UPMSG=['جاري التحقق.
   if(RBYTES&&!PUBLIC_DATA){KEY=code;tryOpen().then(function(ok){if(!ok)KEY='';fin(ok)})}
   else fetch('/api/state',{method:'POST',headers:{'x-user':user,'x-key':code,'x-check':'1'}}).then(function(r){fin(r.ok)}).catch(function(){UPMSG=['تعذر الاتصال بالخادم'];render()})}
 VIEWS.data=function(){
-  if(SERVER&&!KEY)return '<section><h2>دخول مسؤول التحديث</h2><p class="q">الداشبورد متاحة للعرض للجميع. أدخل بيانات المسؤول هنا فقط لرفع تحديث جديد.</p><div class="tools"><input id="eu" placeholder="اسم المستخدم" autocomplete="username" style="flex:1;max-width:200px"><input type="password" id="ek" placeholder="كلمة المرور" autocomplete="current-password" style="flex:1;max-width:240px"><button class="copybtn" data-unlock>دخول</button></div>'+(UPMSG.length?'<div class="panel" style="margin-top:12px">'+UPMSG.map(function(x){return '<div>'+esc(x)+'</div>'}).join('')+'</div>':'')+'</section>';
   var ready=REQ.every(function(k){return PEND[k]||RAW[k]}),h='<section><h2>تحديث البيانات</h2><p class="q">ارفع ملفات التصدير (CSV أو Excel) دفعة واحدة أو على دفعات. تُقرأ الملفات داخل متصفحك، ثم تُحفظ بيانات الداشبورد على السيرفر لتظهر لكل من يفتح الرابط. الملف الجديد بيحل محل القديم من نفس النوع، فتقدر ترفع المتغيّر بس.</p>'+ 
    '<label class="drop" for="fl"><input type="file" id="fl" multiple accept=".csv,.xlsx,.xls" hidden><b>اسحب الملفات هنا أو اضغط للاختيار</b><span>8 أنواع ملفات: 7 مطلوبة وسجل الأسعار اختياري</span></label>'+
    '<div class="panel scroll" style="margin-top:12px"><table><tr><th>نوع الملف</th><th>اسم الملف المتوقع</th><th>الحالة</th><th>الملف</th><th class="num">الصفوف</th></tr>'+
@@ -680,7 +679,7 @@ function render(){
   document.body.classList.toggle('locked',!AUTH);$('login').hidden=AUTH;
   if(!AUTH){var ll=$('llogos');if(ll&&!ll.firstChild){var lg=document.querySelector('.top .logos');if(lg)ll.appendChild(lg.cloneNode(true))}return}
   var r=route();
-  document.querySelector('[data-logout]').hidden=(r!=='data');
+  document.querySelector('[data-logout]').hidden=true;
   try{document.body.setAttribute('data-r',r)}catch(e){}
   $('exbtn').hidden=!(window.docx&&HAS);$('gsw').hidden=false;
   $('note').hidden=!HAS;$('note').innerHTML='<b>بيانات حقيقية</b> من ملفات التصدير بتاريخ <bdi dir="ltr">'+esc(D.asof)+'</bdi>.';
@@ -774,6 +773,6 @@ function exportDoc(){var m=$('actmsg');
   catch(e){m.textContent='تعذر تجهيز الملف'}}
 $('asof').textContent='التتبع على مستوى العلبة · الأسعار بالجنيه المصري';
 render();dlInit();
-READY=loadRemote().then(function(){if(!SERVER)return idb('get').then(function(st){if(st&&st.tables){RAW=st.tables;META=st.meta||{};if(st.D)setData(st.D)}})}).then(function(){AUTH=true;render()});
+READY=loadRemote().then(function(){if(SERVER&&!PUBLIC_DATA&&RBYTES&&KEY)return tryOpen().then(function(ok){if(ok)persist({tables:RAW,meta:META,D:D})});if(!SERVER)return idb('get').then(function(st){if(st&&st.tables){RAW=st.tables;META=st.meta||{};if(st.D)setData(st.D)}})}).then(function(){AUTH=true;render()});
 </script>
 </body></html>
