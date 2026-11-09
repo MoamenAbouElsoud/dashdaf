@@ -668,11 +668,11 @@ function doLogin(u,p){var er=$('lerr'),bt=$('lb');er.textContent='';bt.disabled=
       if(!r.ok)throw new Error(r.status===401?'اسم المستخدم أو كلمة المرور غير صحيحة':'تعذر الاتصال بالخادم');
       KEY=p;USER=u;return tryOpen().then(function(ok){if(RBYTES&&!ok){KEY='';throw new Error('تعذر فتح البيانات المحفوظة')}setAuth(u,p)})})}
     return sha(u+':'+p).then(function(h){if(h!==HASH)throw new Error('اسم المستخدم أو كلمة المرور غير صحيحة');setAuth(u,p)})})
-  .then(function(){$('lp').value='';location.hash=HAS?'#overview':'#data';render()})
+  .then(function(){$('lp').value='';location.hash='#overview';render()})
   .catch(function(e){er.textContent=(e&&e.message)||'تعذر تسجيل الدخول'})
   .then(function(){bt.disabled=false})}
 function logout(){AUTH=false;KEY='';USER='';try{sessionStorage.clear()}catch(e){}render()}
-function route(){if(!HAS)return 'data';var r=(location.hash||'#overview').slice(1);return VIEWS[r]?r:'overview'}
+function route(){var r=(location.hash||'#overview').slice(1);return VIEWS[r]?r:'overview'}
 function render(){
   document.body.classList.toggle('locked',!AUTH);$('login').hidden=AUTH;
   if(!AUTH){var ll=$('llogos');if(ll&&!ll.firstChild){var lg=document.querySelector('.top .logos');if(lg)ll.appendChild(lg.cloneNode(true))}return}
@@ -680,7 +680,7 @@ function render(){
   try{document.body.setAttribute('data-r',r)}catch(e){}
   $('exbtn').hidden=!(window.docx&&HAS);$('gsw').hidden=!HAS;
   $('note').hidden=!HAS;$('note').innerHTML='<b>بيانات حقيقية</b> من ملفات التصدير بتاريخ <bdi dir="ltr">'+esc(D.asof)+'</bdi>.';
-  $('links').innerHTML=(HAS?ROUTES:ROUTES.filter(function(x){return x[0]==='data'})).map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===r?' aria-current="page"':'')+'>'+x[1]+'</a>'}).join('');
+  $('links').innerHTML=ROUTES.map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===r?' aria-current="page"':'')+'>'+x[1]+'</a>'}).join('');
   $('title').textContent=ROUTES.filter(function(x){return x[0]===r})[0][1];
   var cn=S.sel?CO.filter(function(c){return c.g===S.sel})[0]:null;
   $('badge').innerHTML=(cn&&r==='products')?'<span class="badge">'+esc(cn.n)+' <button data-clear aria-label="إلغاء التصفية">✕</button></span>':'';
