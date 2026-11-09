@@ -1,0 +1,779 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>body{margin:0}</style></head><body><title>لوحة EPTTS التنفيذية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: right-hand navigation rail + one focused view at a time. Overview leads with "needs a decision", then the registries, onboarding pipeline, pricing and stock. */
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#0F1A33; --muted:#586379; --line:#DDE2EC;
+  --accent:#17307F; --accent-ink:#FFFFFF; --soft:#E8ECF7;
+  --navy:#0E2266; --navy-ink:#FFFFFF; --gold:#B8912C;
+  --c1:#17307F; --c2:#B8912C; --c3:#6F7FA3;
+  --good:#1B8A57; --warn:#B06F10; --bad:#C23B2E;
+  --shadow:0 1px 2px rgba(15,26,51,.06),0 4px 14px rgba(15,26,51,.05);
+  --f-body:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
+  --f-head:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A1022; --surface:#111A33; --ink:#E8ECF6; --muted:#9AA6C0; --line:#22304F;
+  --accent:#8FA8F2; --accent-ink:#0A1230; --soft:#18264A;
+  --navy:#0C1536; --navy-ink:#FFFFFF; --gold:#D8B24E;
+  --c1:#8FA8F2; --c2:#D8B24E; --c3:#8190B3;
+  --good:#4CC38A; --warn:#E0A84A; --bad:#F0786B; --shadow:none; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1022; --surface:#111A33; --ink:#E8ECF6; --muted:#9AA6C0; --line:#22304F;
+  --accent:#8FA8F2; --accent-ink:#0A1230; --soft:#18264A;
+  --navy:#0C1536; --navy-ink:#FFFFFF; --gold:#D8B24E;
+  --c1:#8FA8F2; --c2:#D8B24E; --c3:#8190B3;
+  --good:#4CC38A; --warn:#E0A84A; --bad:#F0786B; --shadow:none; color-scheme:dark}
+*{box-sizing:border-box}
+body[data-r=report] .top .logos{display:none}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;direction:rtl;padding-block:0 40px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh;max-width:1480px;margin:0 auto}
+nav{background:var(--navy);color:var(--navy-ink);padding:20px 12px 20px max(16px,env(safe-area-inset-right,0px));position:sticky;top:env(safe-area-inset-top,0px);align-self:start;height:100vh;overflow-y:auto}
+.brand{padding:4px 8px 18px}
+.brand b{display:block;font-family:var(--f-head);font-size:21px;letter-spacing:1px;color:var(--navy-ink)}
+.brand b::after{content:"";display:block;width:28px;height:3px;background:var(--gold);margin-top:6px;border-radius:2px}
+.brand span{display:block;margin-top:8px;font-size:12.5px;color:rgba(255,255,255,.7)}
+nav a{display:block;padding:9px 12px;border-radius:6px;color:rgba(255,255,255,.82);text-decoration:none;font-size:14.5px;font-weight:500;margin-bottom:2px;border-inline-start:3px solid transparent;transition:background .18s,color .18s}
+nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+nav a[aria-current=page]{background:rgba(255,255,255,.13);color:#fff;font-weight:700;border-inline-start-color:var(--gold)}
+nav :focus-visible{outline-color:var(--gold)}
+.navnote{margin:18px 8px 0;font-size:12px;color:rgba(255,255,255,.6);line-height:1.6}
+.main{padding:18px max(16px,env(safe-area-inset-left,0px)) 0 24px;min-width:0}
+.top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:8px;padding:12px 18px;box-shadow:var(--shadow)}
+.top h1{font-family:var(--f-head);font-size:22px;margin:0;font-weight:700;color:var(--accent)}
+.top .sub{font-size:12.5px;color:var(--muted)}
+.logos{display:flex;gap:14px;align-items:center}
+.logos{background:#fff;border-radius:6px;padding:4px 10px}
+.lgimg{height:50px;width:auto;max-width:160px;display:block}
+.note{margin:0 0 16px;padding:9px 12px;border:1px solid var(--line);border-inline-start:4px solid var(--gold);border-radius:6px;font-size:13px;background:var(--surface)}
+.badge{display:inline-flex;gap:8px;align-items:center;background:var(--soft);color:var(--accent);border-radius:14px;padding:3px 6px 3px 12px;font-size:13px;font-weight:600;margin-bottom:12px}
+.badge button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:50%;width:20px;height:20px;line-height:1;font-size:12px;padding:0}
+h2{font-family:var(--f-head);font-size:16px;margin:0 0 3px;font-weight:700;color:var(--accent)}
+h2::before{content:"";display:inline-block;width:4px;height:15px;background:var(--gold);border-radius:2px;margin-inline-end:8px;vertical-align:-2px}
+.q{font-size:13px;color:var(--muted);margin:0 0 10px}
+section{margin-top:24px}
+section:first-child{margin-top:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;min-width:0;box-shadow:var(--shadow)}
+.scroll{overflow-x:auto}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.g6{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1100px){.g6{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.g6{grid-template-columns:minmax(0,1fr)}}
+.grid>*{min-width:0}
+.dc{display:block;width:100%;text-align:right;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:13px 15px;box-shadow:var(--shadow);transition:border-color .18s,transform .18s}
+.dc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.dc .v{font-family:var(--f-head);font-size:28px;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.dc .l{font-size:13.5px;margin-top:2px}
+.dc .s{font-size:12.5px;color:var(--muted);margin-top:2px}
+.dc .go{font-size:12.5px;color:var(--accent);font-weight:600;margin-top:8px;display:block}
+.dc.r .v{color:var(--bad)} .dc.w .v{color:var(--warn)}
+.grp{display:block;width:100%;text-align:right;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;box-shadow:var(--shadow);transition:border-color .18s,transform .18s}
+.grp:hover{border-color:var(--accent);transform:translateY(-2px)}
+.grp .gl{font-size:13.5px;color:var(--muted);font-weight:600}
+.grp .gv{font-family:var(--f-head);font-size:32px;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums;color:var(--accent)}
+.split{display:flex;height:9px;border-radius:5px;overflow:hidden;background:var(--line);margin:8px 0}
+.split b{display:block;height:100%}
+.k1{background:var(--c1)} .k2{background:var(--c2)} .k3{background:var(--c3)}
+.sd{background:var(--good)} .sv{background:var(--warn)} .sn{background:var(--muted)} .sb{background:var(--bad)}
+.lg{display:flex;flex-wrap:wrap;gap:3px 14px;font-size:13px}
+.lg span{display:inline-flex;gap:5px;align-items:center}
+.lg i,.tp i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.lg i.sd{background:var(--good)} .lg i.sv{background:var(--warn)} .lg i.sn{background:var(--muted)}
+.tp{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;font-weight:600;white-space:nowrap}
+.t-fac i,.t-dis i{background:var(--c1)} .t-imp i,.t-tpl i{background:var(--c2)} .t-sci i,.t-wh i{background:var(--c3)}
+.bigrow{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0 0 12px}
+.bigrow div{font-size:13px;color:var(--muted)}
+.bigrow b{display:block;font-family:var(--f-head);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.rank{display:grid;grid-template-columns:minmax(120px,1.2fr) 2fr auto;gap:8px 12px;align-items:center;font-size:13.5px}
+.rank .bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.rank .bar b{display:block;height:100%;background:var(--c1)}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-align:right;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:top}
+td.w{white-space:normal;min-width:170px}
+tr:last-child td{border-bottom:0}
+.num{text-align:left} th.num{text-align:left}
+tr.row{cursor:pointer} td{transition:background .15s} tr.row:hover td{background:var(--soft)}
+tr.tot td{font-weight:700;border-top:2px solid var(--line)}
+tr.det td{background:color-mix(in srgb,var(--accent) 5%,transparent);white-space:normal}
+.s2{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:10px;white-space:nowrap}
+.chip.paid{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.chip.bad{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+.chip.n{background:var(--line);color:var(--muted)}
+.good-t{color:var(--good);font-weight:600} .bad-t{color:var(--bad);font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.f{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:4px 13px;font-size:13px;transition:background .15s,border-color .15s}
+.f:hover{border-color:var(--accent)}
+.f[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+select,input[type=search]{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px;min-width:0}
+.mini{display:flex;height:8px;min-width:120px;border-radius:4px;overflow:hidden;background:var(--line)}
+.mini b{display:block;height:100%}
+.arrow{display:inline-block;color:var(--muted);transition:transform .15s} .open .arrow{transform:rotate(-90deg)}
+.loc{display:grid;grid-template-columns:minmax(150px,240px) 1fr 90px 190px;gap:6px 12px;align-items:center;font-size:13px;padding:3px 0}
+.loc .bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.loc .bar b{display:block;height:100%;background:var(--c1)}
+.hist{margin-top:8px;font-size:12.5px;color:var(--muted)}
+.more{margin-top:10px;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:6px 14px;font-size:13px}
+.empty{padding:26px 18px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px;margin-bottom:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px 14px;box-shadow:var(--shadow)}
+.tile .l{font-size:13px;color:var(--muted)} .tile .v{font-family:var(--f-head);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.tile .n{font-size:12px;color:var(--muted)}
+/* التقرير الموجز */
+.rep{background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+.rephead{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:3px solid var(--gold)}
+.rephead h3{font-family:var(--f-head);font-size:19px;margin:0;color:var(--accent)}
+.rephead .sub{font-size:12.5px;color:var(--muted)}
+.repbody{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px 24px;padding:18px 20px}
+.repbody>div{min-width:0}
+.rep h4{font-family:var(--f-head);font-size:14px;margin:0 0 6px;color:var(--accent)}
+.rep table{font-size:13.5px}
+.rep th{position:static;background:var(--navy);color:var(--navy-ink);border:0;padding:7px 10px}
+.rep td{padding:7px 10px}
+.rep tr:nth-child(even) td{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.rep tr.tot td{background:var(--soft)}
+.locked #login{display:flex}
+#login{position:fixed;inset:0;z-index:200;background:linear-gradient(160deg,var(--navy,#0F2260),#1a2f7a);align-items:center;justify-content:center;padding:16px}
+#login[hidden]{display:none}
+#lf{background:var(--surface);border-radius:14px;padding:28px 26px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.35);border-top:4px solid #B8891F}
+#lf h1{margin:0;text-align:center;font-size:26px;letter-spacing:2px;color:var(--ink)}
+#lf p{margin:0 0 6px;text-align:center;color:var(--muted);font-size:13px}
+#lf label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+#lf input{padding:10px 12px;font-size:15px}
+#llogos{display:flex;justify-content:center;align-items:center;gap:10px}
+#llogos .logos{display:flex;gap:10px;align-items:center}
+#lerr{min-height:18px;color:#B3261E;font-size:13px;text-align:center}
+body.locked>:not(#login){visibility:hidden}
+.gsw{position:relative;flex:1 1 260px;max-width:380px;min-width:200px}
+.gsw input{width:100%}
+.gsr{position:absolute;inset-inline:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(15,26,51,.18);max-height:60vh;overflow:auto;z-index:25}
+.gsh{padding:7px 12px;font-size:12px;color:var(--muted);font-weight:600;background:var(--bg);position:sticky;top:0}
+.gsi{display:block;width:100%;text-align:right;border:0;background:none;padding:8px 12px;border-bottom:1px solid var(--line)}
+.gsi:hover,.gsi:focus-visible{background:var(--soft)}
+.gsi span{display:block;font-size:12px;color:var(--muted)}
+.drop{display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;border:2px dashed var(--accent);border-radius:10px;padding:26px 16px;background:var(--surface);cursor:pointer;text-align:center}
+.drop:hover{background:var(--soft)}
+.drop span{font-size:13px;color:var(--muted)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.acts{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.copybtn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:7px 16px;font-size:13.5px;font-weight:600}
+.copybtn:hover{opacity:.9}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  nav{height:auto;display:flex;gap:4px;overflow-x:auto;padding:8px max(16px,env(safe-area-inset-left,0px)) 8px max(16px,env(safe-area-inset-right,0px));border-inline-end:0;border-bottom:1px solid var(--line);z-index:20}
+  .brand,.navnote{display:none}
+  nav a{white-space:nowrap;margin:0}
+  #links{display:flex;gap:4px}
+  .main{padding:14px max(16px,env(safe-area-inset-left,0px)) 0 max(16px,env(safe-area-inset-right,0px))}
+  .loc{grid-template-columns:1fr 80px}
+  .loc .bar,.loc .sx{grid-column:1/-1}
+}
+/* حركة هادئة: تظهر مرة واحدة عند فتح الصفحة فقط، والقيم نفسها لا تتغير */
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+@keyframes grow{from{transform:scaleX(0)}}
+.fx>section{animation:rise .42s cubic-bezier(.2,.7,.2,1) backwards}
+.fx>section:nth-child(2){animation-delay:.06s}.fx>section:nth-child(3){animation-delay:.12s}.fx>section:nth-child(4){animation-delay:.18s}.fx>section:nth-child(n+5){animation-delay:.24s}
+.fx .split b,.fx .rank .bar b,.fx .mini b,.fx .loc .bar b{transform-origin:right;animation:grow .7s cubic-bezier(.2,.7,.2,1) .15s backwards}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <nav id="nav" aria-label="الأقسام">
+    <div class="brand"><b>EPTTS</b><span>لوحة الإدارة العليا</span></div>
+    <div id="links"></div>
+    <div class="navnote">التتبع على مستوى العلبة. المصدر: ملفات التصدير من الهيئة وداف.</div>
+  </nav>
+  <div id="login" hidden><form id="lf" autocomplete="on"><div id="llogos"></div><h1>EPTTS</h1><p>أدخل كلمة مرور العرض لمشاهدة الداشبورد</p>
+    <label>كلمة المرور<input id="lp" name="password" type="password" autocomplete="current-password" dir="ltr" required></label>
+    <button class="copybtn" type="submit" id="lb">دخول</button><div id="lerr" role="alert"></div></form></div>
+  <div class="main">
+    <header class="top">
+      <div><h1 id="title"></h1><div class="sub" id="asof"></div></div>
+      <div class="gsw" id="gsw"><input type="search" id="gs" placeholder="بحث سريع: شركة، منتج، GTIN، فاتورة، موزع…" aria-label="بحث عام" autocomplete="off"><div class="gsr" id="gsr" hidden></div></div>
+      <div class="acts"><button class="copybtn" id="exbtn" data-exportdoc hidden>تصدير تقرير Word</button><span class="q" id="actmsg" style="margin:0"></span><button class="f" data-logout style="margin-top:4px">تسجيل خروج</button></div>
+      <div class="logos">
+        <img class="lgimg" src="data:image/png;base64,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" alt="شعار الهيئة المصرية للدواء">
+        <img class="lgimg" src="data:image/png;base64,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" alt="شعار DAF">
+      </div>
+    </header>
+    <div class="note" id="note"></div>
+    <div id="badge"></div>
+    <div id="view"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(root){
+var GOV={cairo:'القاهرة',giza:'الجيزة',alexandria:'الإسكندرية',qalyubia:'القليوبية',gharbia:'الغربية',sohag:'سوهاج',dakahlia:'الدقهلية',minya:'المنيا',sharqia:'الشرقية',asyut:'أسيوط',monufia:'المنوفية',beheira:'البحيرة',beni_suef:'بني سويف'};
+var TEST=/test|pilot|تجرب/i, HOSP=/مستشف|hospital|مستشفي/i, ADM=/ادارة|إدارة|مديرية|قوافل|الصحية|وحدة|health/i;
+function s(x){return x==null?'':String(x)}
+function n0(x){if(x===''||x==null)return 0;var v=parseFloat(x);return isFinite(v)?Math.trunc(v):0}
+function d10(x){return x?String(x).slice(0,10):''}
+function cmp(a,b){return a<b?-1:a>b?1:0}
+
+/* قراءة CSV بالمعيار (علامات اقتباس وأسطر داخل الحقول) */
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  var rows=[],row=[],f='',q=false,i=0,n=text.length,c;
+  while(i<n){c=text[i];
+    if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i+=2;continue}q=false;i++;continue}f+=c;i++;continue}
+    if(c==='"'){q=true;i++;continue}
+    if(c===','){row.push(f);f='';i++;continue}
+    if(c==='\r'){i++;continue}
+    if(c==='\n'){row.push(f);rows.push(row);row=[];f='';i++;continue}
+    f+=c;i++}
+  if(f!==''||row.length){row.push(f);rows.push(row)}
+  while(rows.length&&rows[rows.length-1].every(function(x){return x===''}))rows.pop();
+  if(!rows.length)return [];
+  var h=rows[0].map(function(x){return x.trim()}),out=[];
+  for(var r=1;r<rows.length;r++){var o={},rw=rows[r];for(var k=0;k<h.length;k++)o[h[k]]=rw[k]===undefined?'':rw[k];out.push(o)}
+  return out;
+}
+function xlDate(v){
+  if(v==null||v==='')return '';
+  if(typeof v==='number'){var ms=Date.UTC(1899,11,30)+Math.floor(v)*864e5;return new Date(ms).toISOString().slice(0,10)}
+  if(v instanceof Date)return v.toISOString().slice(0,10);
+  return d10(v);
+}
+/* تعرّف على نوع الملف من أسماء الأعمدة */
+function detect(h){
+  var has=function(k){return h.indexOf(k)>-1};
+  if(has('Invoice #'))return 'invoices';
+  if(has('Stock Qty'))return 'stock';
+  if(has('previousPriceCents'))return 'hist';
+  if(has('registrationEntityType'))return 'regs';
+  if(has('metric')&&has('section'))return 'stats';
+  if(has('registrantGln')&&has('registrationId'))return 'sp';
+  if(has('mahGln')&&has('creationSource')&&has('gtin'))return 'prods';
+  if(has('gln')&&has('type')&&has('name'))return 'parties';
+  return '';
+}
+/* جدول الفواتير من صفوف الإكسل (مصفوفات) */
+function invoicesFromRows(rows){
+  var hi=-1;for(var i=0;i<rows.length;i++){if(rows[i]&&rows[i][0]==='Invoice #'){hi=i;break}}
+  if(hi<0)return [];var out=[];
+  for(var j=hi+1;j<rows.length;j++){var r=rows[j];if(!r||!r[0]||String(r[0]).indexOf('INV')!==0)continue;
+    out.push({no:s(r[0]),g:s(r[1]),n:s(r[2]),st:s(r[3]),at:xlDate(r[4]),paid:xlDate(r[5]),via:s(r[6]),u:n0(r[7]),sub:parseFloat(r[8])||0,vat:parseFloat(r[9])||0,fee:parseFloat(r[10])||0,tot:parseFloat(r[11])||0})}
+  return out;
+}
+function invoicesFromCSV(objs){
+  return objs.filter(function(r){return s(r['Invoice #']).indexOf('INV')===0}).map(function(r){return {no:r['Invoice #'],g:s(r['MAH GLN']),n:s(r['MAH Name']),st:s(r['Status']),at:d10(r['Created']),paid:d10(r['Paid']),via:s(r['Paid Via']),u:n0(r['Units']),sub:parseFloat(r['Subtotal'])||0,vat:parseFloat(r['VAT 14%'])||0,fee:parseFloat(r['eService Fee'])||0,tot:parseFloat(r['Total'])||0}});
+}
+
+function build(T,asof){
+  var parties=T.parties||[],prods=T.prods||[],regs=T.regs||[],sp=T.sp||[],stock=T.stock||[],hist=T.hist||[],stats=T.stats||[],invoices=T.invoices||[];
+  var byg={},byid={};
+  parties.forEach(function(p){if(p.gln)byg[p.gln]=p;if(p.id)byid[p.id]=p});
+  var spby={};function addSp(g,t){(spby[g]=spby[g]||{})[t]=1}
+  sp.forEach(function(x){addSp(x.registrantGln,x.gtin)});
+  prods.forEach(function(p){if(p.registeredAgentGln)addSp(p.registeredAgentGln,p.gtin)});
+  var STAT={completed:'done',company_verified:'verified',draft:'draft'};
+  function ctype(r){if(r.edaLicenseType==='Scientific Office')return 'sci';if(r.registrationEntityType==='factory')return 'fac';return 'imp'}
+  function dtype(en,ar){var n=en+' '+ar;if(/logistic|لوجيست|لوجست/i.test(n))return 'tpl';if(/warehouse|مخازن|مخزن/i.test(n))return 'wh';return 'dis'}
+  var companies=[];
+  regs.forEach(function(r){
+    if(r.registrationEntityType==='distributor')return;var g=r.gln;
+    companies.push({n:s(r.companyNameEn).trim(),a:s(r.companyNameAr).trim(),t:ctype(r),lic:s(r.edaLicenseType),gov:GOV[r.governorateCode]||'',st:STAT[r.status]||'draft',step:n0(r.step),g:s(g),
+      stg:n0(r.stagedProductCount),cf:n0(r.confirmedProductCount),sk:n0(r.skippedProductCount),cm:n0(r.committedProductCount),np:g?Object.keys(spby[g]||{}).length:0,at:d10(r.createdAt),done:r.committedAt?d10(r.committedAt):''})});
+  var ord={done:0,verified:1,draft:2};
+  companies.sort(function(a,b){return (ord[a.st]-ord[b.st])||(b.cm-a.cm)||cmp(a.n,b.n)});
+  var gname={};companies.forEach(function(c){if(c.g)gname[c.g]=c.n});
+
+  function sitekind(n){if(/hospital|مستشف/i.test(n))return 'hosp';if(/warehouse|مستودع|مخزن/i.test(n))return 'wh';if(n.indexOf('ف ')===0||/pharm|صيدل/i.test(n))return 'pharm';return 'site'}
+  function lockind(gln){var p=byg[gln];
+    if(p){if(p.type==='manufacturer'||p.type==='importer')return ['co',''];if(p.type==='distributor')return ['dist',''];
+      if(p.type==='branch'){var k=sitekind(p.name),par=byid[p.parentEntityId];return [k==='site'?'pharm':k,par?par.name:'']}}
+    return ['pharm',''];}
+  var stk={},locs=new Map();
+  stock.forEach(function(r){var kk=lockind(r.GLN),k=kk[0],owner=kk[1];
+    var row={g:r.GLN,n:r.Entity,k:k,o:owner,q:n0(r['Stock Qty']),d:n0(r['Shipped To Distributor (packs)']),p:n0(r['Shipped To Pharmacy (packs)'])};
+    (stk[r.GTIN]=stk[r.GTIN]||[]).push(row);
+    var L=locs.get(r.GLN);if(!L){L={g:r.GLN,n:r.Entity,k:k,o:owner,q:0,d:0,p:0};locs.set(r.GLN,L)}
+    L.q+=row.q;L.d+=row.d;L.p+=row.p});
+
+  var hby={};hist.slice().sort(function(a,b){return cmp(s(a.createdAt),s(b.createdAt))}).forEach(function(h){(hby[h.gtin]=hby[h.gtin]||[]).push({pv:h.previousPriceCents,nv:h.newPriceCents,ty:h.changeType,at:d10(h.createdAt)})});
+  var sprg={};sp.forEach(function(x){sprg[x.gtin]=x.registrantGln});
+  var products=prods.map(function(p){
+    var rg=sprg[p.gtin]||p.registeredAgentGln||'',mah=byg[p.mahGln];
+    var rn=gname[rg]||(byg[rg]?byg[rg].name:'');
+    return {gt:p.gtin,n:s(p.name).trim(),mfr:s(p.manufacturer).trim(),mah:(mah?mah.name:s(p.manufacturer)).trim(),rg:rg,rn:rn,pr:parseFloat(p.unitPriceCents||0)||0,rv:p.pricingReviewStatus,act:p.isActive==='true',
+      pk:p.packagingLevel,df:p.dosageForm,imp:p.isImported==='true',src:p.creationSource,at:d10(p.createdAt),st:stk[p.gtin]||[],h:hby[p.gtin]||[]}});
+
+  var branches=parties.filter(function(p){return p.type==='branch'});
+  function siteSummary(party){
+    if(!party)return [0,{},0,0,0];
+    var sites=branches.filter(function(b){return party.id&&b.parentEntityId===party.id}),kinds={};
+    sites.forEach(function(b){var k=sitekind(b.name);kinds[k]=(kinds[k]||0)+1});
+    var gl={};sites.forEach(function(b){gl[b.gln]=1});gl[party.gln]=1;var q=0,d=0,p=0;
+    Object.keys(gl).forEach(function(g){var L=locs.get(g);if(L){q+=L.q;d+=L.d;p+=L.p}});
+    return [sites.length,kinds,q,d,p]}
+  var dist=[],seen={};
+  regs.filter(function(r){return r.registrationEntityType==='distributor'}).forEach(function(r){
+    var party=r.gln?byg[r.gln]:null;if(party)seen[party.gln]=1;
+    var ss=siteSummary(party);
+    dist.push({n:s(r.companyNameEn).trim(),a:s(r.companyNameAr).trim(),t:dtype(s(r.companyNameEn),s(r.companyNameAr)),gov:GOV[r.governorateCode]||'',st:STAT[r.status]||'draft',sites:ss[0],kinds:ss[1],q:ss[2],d:ss[3],p:ss[4],at:d10(r.createdAt)})});
+  parties.forEach(function(p){
+    if(p.type==='distributor'&&!seen[p.gln]&&!TEST.test(p.name)){var ss=siteSummary(p);
+      dist.push({n:s(p.name).trim(),a:s(p.nameAr).trim(),t:dtype(s(p.name),s(p.nameAr)),gov:GOV[p.governorateCode]||'',st:'registry',sites:ss[0],kinds:ss[1],q:ss[2],d:ss[3],p:ss[4],at:d10(p.createdAt)})}});
+
+  var disp={};
+  parties.forEach(function(p){if(p.type!=='pharmacy')return;var n=s(p.name)+' '+s(p.nameAr);
+    var k=TEST.test(n)?'test':HOSP.test(n)?'hosp':ADM.test(n)?'adm':'pharm';disp[k]=(disp[k]||0)+1});
+  ['pharm','hosp','adm','test'].forEach(function(k){disp[k]=disp[k]||0});
+  var sitelocs=Array.from(locs.values()).filter(function(L){return L.k==='pharm'||L.k==='hosp'||L.k==='wh'}).sort(function(a,b){return (b.q+b.p)-(a.q+a.p)});
+
+  var summ={},months={},mOrder=[];
+  stats.forEach(function(r){if(r.section==='summary')summ[r.metric]=n0(r.count);
+    if(r.section==='month'){if(!months[r.period]){months[r.period]={};mOrder.push(r.period)}months[r.period][r.metric]=n0(r.count)}});
+  var monthly=mOrder.map(function(m){var v=months[m];return {m:m,c:v.companies_onboarded||0,s:v.registrations_started||0,p:v.products_added||0}});
+  var hsrc={};hist.forEach(function(h){hsrc[h.source]=(hsrc[h.source]||0)+1});
+  return {invoices:invoices,asof:asof,companies:companies,dist:dist,products:products,disp:disp,sitelocs:sitelocs,summ:summ,monthly:monthly,
+    reg_total:regs.length,mfr_sites:parties.filter(function(p){return p.type==='manufacturer'}).length,hist_n:hist.length,hist_src:hsrc};
+}
+root.EPTTS_BUILD={parseCSV:parseCSV,detect:detect,build:build,invoicesFromRows:invoicesFromRows,invoicesFromCSV:invoicesFromCSV,xlDate:xlDate};
+if(typeof module!=='undefined')module.exports=root.EPTTS_BUILD;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+try{document.documentElement.dir='rtl';document.documentElement.lang='ar'}catch(e){}
+var D0=null;
+var D=D0||{invoices:[],asof:'',companies:[],dist:[],products:[],disp:{pharm:0,hosp:0,adm:0,test:0},sitelocs:[],summ:{},monthly:[],reg_total:0,mfr_sites:0,hist_n:0,hist_src:{}};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(n){return Math.round(n).toLocaleString('en-US')}
+function money(n){return n>=1e6?(n/1e6).toFixed(2)+' مليون':fmt(n)}
+function pct(a,b){return b?Math.round(a/b*100):0}
+function pc(a,b){return '<bdi dir="ltr">'+pct(a,b)+'%</bdi>'}
+function sum(a,f){return a.reduce(function(s,x){return s+f(x)},0)}
+var $=function(i){return document.getElementById(i)};
+var CO,DI,PR,INV,HAS=false;
+function setData(d){D=d;CO=D.companies;DI=D.dist;PR=D.products;INV=D.invoices;
+  PR.forEach(function(p){p.q=sum(p.st,function(l){return l.q});p.d=sum(p.st,function(l){return l.d});p.p=sum(p.st,function(l){return l.p});p.mv=p.st.length>0});
+  INV.forEach(function(v){v.age=Math.round((new Date(D.asof)-new Date(v.at))/864e5)});
+  HAS=CO.length>0||PR.length>0||INV.length>0}
+setData(D);
+/* تطبيع نص البحث العربي */
+function tqBox(ph){return '<input type="search" id="tq" data-tq placeholder="'+ph+'" aria-label="بحث" value="'+esc(S.tq)+'" style="flex:1;min-width:180px;max-width:340px">'}
+function nz(x){return String(x==null?'':x).toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه')}
+var TN={fac:'مصنع',imp:'مستورد',sci:'مكتب علمي',dis:'موزع',tpl:'3PL',wh:'مخزن'};
+var KIND={co:'شركة',dist:'موزع',wh:'مخزن',pharm:'صيدلية',hosp:'مستشفى'};
+var GRP={co:'co',dist:'dist',wh:'dist',pharm:'pt',hosp:'pt'};
+var STL={done:'مكتمل',verified:'تم التحقق من الشركة',draft:'مسودة',registry:'مسجل في السجل'};
+var STC={done:'paid',verified:'warn',draft:'n',registry:'paid'};
+var MON=['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+function tp(k){return '<span class="tp t-'+k+'"><i></i>'+TN[k]+'</span>'}
+function stChip(s){return '<span class="chip '+STC[s]+'">'+STL[s]+'</span>'}
+function name2(n,a){return '<b>'+esc(n)+'</b>'+(a?'<span class="s2">'+esc(a)+'</span>':'')}
+function split(parts){var t=sum(parts,function(p){return p.v})||1;return '<div class="split">'+parts.map(function(p){return '<b class="'+p.k+'" style="width:'+(p.v/t*100)+'%"></b>'}).join('')+'</div>'}
+function legend(parts){return '<div class="lg">'+parts.map(function(p){return '<span><i class="'+p.k+'"></i>'+p.l+' <b>'+fmt(p.v)+'</b></span>'}).join('')+'</div>'}
+function rank(rows,mx){return '<div class="rank">'+rows.map(function(r){return '<span>'+r[0]+'</span><span class="bar"><b style="width:'+(r[1]/mx*100)+'%"></b></span><b class="num">'+fmt(r[1])+(r[2]||'')+'</b>'}).join('')+'</div>'}
+
+var S={tq:'',ist:'all',ctf:'all',cst:'all',sel:'',pf:'all',q:'',open:{},more:25};
+var ROUTES=[['overview','نظرة عامة'],['companies','الشركات'],['distribution','التوزيع واللوجستيات'],['dispensing','الصيدليات والمستشفيات'],['products','المنتجات والمخزون'],['invoices','الفواتير'],['report','التقرير الموجز'],['data','تحديث البيانات']];
+var VIEWS={},fxOn=true,fxT=0;
+
+VIEWS.overview=function(){
+  var pend=PR.filter(function(p){return p.rv==='pending'}).length,appr=PR.length-pend;
+  var drafts=CO.filter(function(c){return c.st==='draft'}).length;
+  var stg=sum(CO,function(c){return c.stg}),cf=sum(CO,function(c){return c.cf}),sk=sum(CO,function(c){return c.sk}),cm=sum(CO,function(c){return c.cm});
+  var IV=invSum(INV);
+  var nomove=PR.filter(function(p){return !p.mv}).length;
+  var ct={fac:0,imp:0,sci:0},dt={dis:0,tpl:0,wh:0},cs={done:0,verified:0,draft:0};
+  CO.forEach(function(c){if(c.st!=='draft')ct[c.t]++;cs[c.st]++});DI.forEach(function(d){dt[d.t]++});
+  var dp=D.disp,dpTot=dp.pharm+dp.hosp+dp.adm;
+  var sq=sum(PR,function(p){return p.q}),sd=sum(PR,function(p){return p.d}),sp=sum(PR,function(p){return p.p}),sv=sum(PR,function(p){return p.q*p.pr});
+  var g={co:0,dist:0,pt:0};PR.forEach(function(p){p.st.forEach(function(l){g[GRP[l.k]]+=l.q})});
+  var mxP=Math.max.apply(null,D.monthly.map(function(m){return m.p}))||1;
+  var h='<section><h2>يحتاج قرار</h2><p class="q">اضغط على أي بند لفتح التفاصيل.</p><div class="grid g5">'+
+   '<button class="dc r" data-go="invoices"><div class="v">'+money(IV.unpaid)+'</div><div class="l">ج فواتير غير مدفوعة</div><div class="s">'+IV.nu+' من '+IV.n+' فاتورة، أقدمها '+IV.old+' أيام</div><span class="go">عرض الفواتير ←</span></button>'+
+   '<button class="dc r" data-go="products" data-pf="pending"><div class="v">'+pend+'</div><div class="l">منتج بانتظار اعتماد السعر</div><div class="s">'+pc(pend,PR.length)+' من '+PR.length+' منتج، وغير مفعّل لحين الاعتماد</div><span class="go">عرض المنتجات ←</span></button>'+
+   '<button class="dc w" data-go="companies" data-cst="draft"><div class="v">'+drafts+'</div><div class="l">شركة بدأت التسجيل ولم تكمل</div><div class="s">من '+CO.length+' شركة</div><span class="go">عرض الشركات ←</span></button>'+
+   '<button class="dc w" data-go="products" data-pf="nomove"><div class="v">'+nomove+'</div><div class="l">منتج مسجل بدون أي حركة مخزون أو شحن</div><div class="s">من '+PR.length+' منتج</div><span class="go">عرض المنتجات ←</span></button>'+
+   '</div></section>';
+  h+='<section><h2>الجهات المسجلة</h2><p class="q">ثلاث فئات منفصلة.</p><div class="grid g3">'+
+   '<button class="grp" data-go="companies"><div class="gl">الشركات المسجلة (مصنع / مستورد / مكتب علمي)</div><div class="gv">'+(CO.length-drafts)+'</div>'+split([{v:ct.fac,k:'k1'},{v:ct.imp,k:'k2'},{v:ct.sci,k:'k3'}])+legend([{l:'مصنع',v:ct.fac,k:'k1'},{l:'مستورد',v:ct.imp,k:'k2'},{l:'مكتب علمي',v:ct.sci,k:'k3'}])+'<div class="s2" style="margin-top:6px">بدون '+drafts+' مسودة لم تكمل التسجيل</div></button>'+
+   '<button class="grp" data-go="distribution"><div class="gl">التوزيع واللوجستيات (موزع / 3PL / مخزن) · تصنيف تقديري</div><div class="gv">'+DI.length+'</div>'+split([{v:dt.dis,k:'k1'},{v:dt.tpl,k:'k2'},{v:dt.wh,k:'k3'}])+legend([{l:'موزع',v:dt.dis,k:'k1'},{l:'3PL',v:dt.tpl,k:'k2'},{l:'مخزن',v:dt.wh,k:'k3'}])+'</button>'+
+   '<button class="grp" data-go="dispensing"><div class="gl">نقاط الصرف (صيدليات / مستشفيات / جهات صحية) · تصنيف تقديري</div><div class="gv">'+fmt(dpTot)+'</div>'+split([{v:dp.pharm,k:'k1'},{v:dp.hosp,k:'k2'},{v:dp.adm,k:'k3'}])+legend([{l:'صيدليات',v:dp.pharm,k:'k1'},{l:'مستشفيات',v:dp.hosp,k:'k2'},{l:'جهات صحية',v:dp.adm,k:'k3'}])+'</button>'+
+   '</div></section>';
+  h+='<section><div class="grid g2">'+
+   '<div class="panel"><h2>تسجيل الشركات</h2><p class="q">الخطوة 1 مسودة، 2 تم التحقق من الشركة، 4 مكتمل.</p>'+
+    split([{v:cs.done,k:'sd'},{v:cs.verified,k:'sv'},{v:cs.draft,k:'sn'}])+
+    '<div class="lg"><span><i class="sd"></i>مكتمل <b>'+cs.done+'</b></span><span><i class="sv"></i>تم التحقق <b>'+cs.verified+'</b></span><span><i class="sn"></i>مسودة <b>'+cs.draft+'</b></span></div>'+
+    '<p class="q" style="margin-top:14px"><b>منتجات قيد التجهيز للتسجيل</b> (غير نهائية وقد تحتوي تكرار، والرسمي '+PR.length+' منتج مسجل)</p>'+rank([['جهّزتها الشركات',stg],['أكدتها الشركات',cf],['تخطّتها الشركات',sk]],stg)+'</div>'+
+   '<div class="panel"><h2>التسعير والمنتجات</h2><p class="q">'+PR.length+' منتج في السجل، السعر بالجنيه للعلبة.</p>'+
+    split([{v:appr,k:'sd'},{v:pend,k:'sv'}])+
+    '<div class="lg"><span><i class="sd"></i>سعر معتمد <b>'+appr+'</b></span><span><i class="sv"></i>بانتظار الاعتماد <b>'+pend+'</b></span></div>'+
+    '<p class="q" style="margin-top:14px">المنتجات المضافة شهرياً</p>'+rank(D.monthly.slice(-5).map(function(m){return [MON[+m.m.slice(5)]+' '+m.m.slice(0,4),m.p]}),mxP)+'</div>'+
+   '</div></section>';
+  h+='<section><h2>الفواتير والتحصيل</h2><p class="q">فواتير الخدمة الإلكترونية للشركات.</p><div class="panel"><div class="bigrow"><div>فواتير صادرة<b>'+IV.n+'</b></div><div>إجمالي المبلغ<b>'+money(IV.tot)+' ج</b></div><div>المدفوع<b class="good-t">'+money(IV.paid)+' ج</b></div><div>غير المدفوع<b class="bad-t">'+money(IV.unpaid)+' ج</b></div></div>'+
+   '<div class="split" style="height:14px"><b class="sd" style="width:'+pct(IV.paid,IV.tot)+'%"></b><b class="sb" style="width:'+(100-pct(IV.paid,IV.tot))+'%"></b></div></div></section>';
+  h+='<section><h2>المخزون والشحن</h2><p class="q">من ملف المخزون والشحنات، على مستوى العلبة. الشحنات تراكمية وقد تحسب العلبة الواحدة عند كل مرحلة.</p><div class="panel">'+
+   '<div class="bigrow"><div>علب في المخزون<b>'+fmt(sq)+'</b></div><div>شُحنت لموزعين<b>'+fmt(sd)+'</b></div><div>شُحنت لصيدليات<b>'+fmt(sp)+'</b></div><div>قيمة المخزون بسعر العلبة<b>'+money(sv)+' ج</b></div><div>منتجات عليها حركة<b>'+(PR.length-nomove)+' من '+PR.length+'</b></div></div>'+
+   split([{v:g.co,k:'k1'},{v:g.dist,k:'k2'},{v:g.pt,k:'k3'}])+legend([{l:'عند الشركات',v:g.co,k:'k1'},{l:'عند الموزعين والمخازن',v:g.dist,k:'k2'},{l:'في الصيدليات والمستشفيات',v:g.pt,k:'k3'}])+'</div></section>';
+  h+='<section><h2>النمو الشهري</h2><div class="panel scroll"><table><tr><th>الشهر</th><th class="num">طلبات تسجيل بدأت</th><th class="num">شركات اكتمل تسجيلها</th><th class="num">منتجات أضيفت</th><th></th></tr>'+
+   D.monthly.map(function(m){return '<tr><td>'+MON[+m.m.slice(5)]+' '+m.m.slice(0,4)+'</td><td class="num">'+m.s+'</td><td class="num">'+m.c+'</td><td class="num">'+m.p+'</td><td><div class="mini" style="min-width:160px"><b class="k1" style="width:'+(m.p/mxP*100)+'%"></b></div></td></tr>'}).join('')+'</table></div></section>';
+  return h;
+};
+
+VIEWS.companies=function(){
+  var cnt={all:CO.length,fac:0,imp:0,sci:0},sc={all:CO.length,done:0,verified:0,draft:0};CO.forEach(function(c){cnt[c.t]++;sc[c.st]++});
+  var L=CO.filter(function(c){return (S.ctf==='all'||c.t===S.ctf)&&(S.cst==='all'||c.st===S.cst)&&(!S.tq||nz(c.n+' '+c.a+' '+c.g+' '+c.gov).indexOf(nz(S.tq))>-1)});
+  var h='<section><h2>الشركات</h2><p class="q">المصانع والمستوردون والمكاتب العلمية وحالة تسجيل كل شركة ومنتجاتها. اضغط على شركة لها منتجات لعرضها.</p><div class="tools">'+
+   tqBox('ابحث باسم الشركة أو GLN')+[['all','كل الأنواع'],['fac','مصنع'],['imp','مستورد'],['sci','مكتب علمي']].map(function(x){return '<button class="f" data-ctf="'+x[0]+'" aria-pressed="'+(S.ctf===x[0])+'">'+x[1]+' ('+cnt[x[0]]+')</button>'}).join('')+
+   '<span style="width:12px"></span>'+
+   [['all','كل الحالات'],['done','مكتمل'],['verified','تم التحقق'],['draft','مسودة']].map(function(x){return '<button class="f" data-cst="'+x[0]+'" aria-pressed="'+(S.cst===x[0])+'">'+x[1]+' ('+sc[x[0]]+')</button>'}).join('')+'</div>';
+  if(!L.length)return h+'<div class="panel empty">مفيش شركات بالتصفية دي</div></section>';
+  var T=[0,0,0,0];
+  h+='<div class="panel scroll"><table><tr><th>الشركة</th><th>النوع</th><th>المحافظة</th><th>حالة التسجيل</th><th class="num">جهّزت</th><th class="num">أكدت</th><th class="num">تخطّت</th><th class="num">مسجلة</th><th>بدأت في</th></tr>'+
+   L.map(function(c){T[0]+=c.stg;T[1]+=c.cf;T[2]+=c.sk;T[3]+=c.cm;
+    return '<tr class="'+(c.np?'row':'')+'" '+(c.np?'data-c="'+esc(c.g)+'"':'')+'><td class="w">'+name2(c.n,c.a)+'</td><td>'+tp(c.t)+'<span class="s2">'+esc(c.lic)+'</span></td><td>'+(esc(c.gov)||'-')+'</td><td>'+stChip(c.st)+'<span class="s2">خطوة '+c.step+' من 4</span></td><td class="num">'+c.stg+'</td><td class="num">'+c.cf+'</td><td class="num">'+c.sk+'</td><td class="num"><b>'+c.cm+'</b></td><td>'+c.at+'</td></tr>'}).join('')+
+   '<tr class="tot"><td>الإجمالي ('+L.length+' شركة)</td><td></td><td></td><td></td><td class="num">'+T[0]+'</td><td class="num">'+T[1]+'</td><td class="num">'+T[2]+'</td><td class="num">'+T[3]+'</td><td></td></tr></table></div>'+
+   '<p class="q" style="margin-top:8px">جهّزت وأكدت وتخطّت: أرقام قيد التجهيز من شاشة التسجيل الذاتي وقد تحتوي تكرار. مسجلة: دخلت سجل المنتجات فعلاً. السجل فيه أيضاً '+D.mfr_sites+' موقع تصنيع بأرقام GLN.</p></section>';
+  return h;
+};
+
+VIEWS.distribution=function(){
+  var cnt={dis:0,tpl:0,wh:0};DI.forEach(function(d){cnt[d.t]++});
+  var h='<section><h2>التوزيع واللوجستيات</h2><p class="q">الموزعون وشركات الـ 3PL والمخازن، مع مواقعهم وما عندهم من علب. التصنيف بين موزع و3PL ومخزن مأخوذ من اسم الكيان.</p>'+
+   '<div class="tiles">'+['dis','tpl','wh'].map(function(k){return '<div class="tile"><div class="l">'+tp(k)+'</div><div class="v">'+cnt[k]+'</div></div>'}).join('')+
+   '<div class="tile"><div class="l">إجمالي المواقع والفروع</div><div class="v">'+sum(DI,function(d){return d.sites})+'</div></div></div>'+
+   '<div class="tools">'+tqBox('ابحث باسم الكيان')+'</div><div class="panel scroll"><table><tr><th>الكيان</th><th>النوع</th><th>المحافظة</th><th>حالة التسجيل</th><th class="num">المواقع والفروع</th><th class="num">علب في المخزون</th><th class="num">شُحنت لموزعين</th><th class="num">شُحنت لصيدليات</th></tr>'+
+   DI.filter(function(d){return !S.tq||nz(d.n+' '+d.a+' '+d.gov).indexOf(nz(S.tq))>-1}).map(function(d){return '<tr><td class="w">'+name2(d.n,d.a)+'</td><td>'+tp(d.t)+'</td><td>'+(esc(d.gov)||'-')+'</td><td>'+stChip(d.st)+'</td><td class="num">'+d.sites+'</td><td class="num">'+(d.q?fmt(d.q):'-')+'</td><td class="num">'+(d.d?fmt(d.d):'-')+'</td><td class="num">'+(d.p?fmt(d.p):'-')+'</td></tr>'}).join('')+'</table></div></section>';
+  return h;
+};
+
+VIEWS.dispensing=function(){
+  var dp=D.disp,tot=dp.pharm+dp.hosp+dp.adm;
+  var rows=D.sitelocs.filter(function(l){return !S.tq||nz(l.n+' '+l.o+' '+l.g).indexOf(nz(S.tq))>-1});
+  var h='<section><h2>الصيدليات والمستشفيات</h2><p class="q">المسجلة في سجل الأطراف. التصنيف بين صيدلية ومستشفى وجهة صحية مأخوذ من الاسم، والسجل لا يحمل المحافظة لهذه الجهات. تم استبعاد '+dp.test+' سجل تجريبي.</p>'+
+   '<div class="tiles"><div class="tile"><div class="l">صيدليات</div><div class="v">'+fmt(dp.pharm)+'</div><div class="n">'+pc(dp.pharm,tot)+'</div></div>'+
+   '<div class="tile"><div class="l">مستشفيات ووحدات بالمستشفيات</div><div class="v">'+fmt(dp.hosp)+'</div><div class="n">'+pc(dp.hosp,tot)+'</div></div>'+
+   '<div class="tile"><div class="l">إدارات صحية وقوافل ووحدات</div><div class="v">'+fmt(dp.adm)+'</div><div class="n">'+pc(dp.adm,tot)+'</div></div>'+
+   '<div class="tile"><div class="l">إجمالي نقاط الصرف</div><div class="v">'+fmt(tot)+'</div></div></div></section>';
+  h+='<section><h2>مواقع الصرف والتخزين اللي عليها حركة</h2><p class="q">من ملف المخزون والشحنات: المواقع التابعة للموزعين وكم علبة عندها وكم استلمت من الصيدليات والمستشفيات.</p>'+
+   '<div class="tools">'+tqBox('ابحث باسم الموقع أو GLN')+'</div><div class="panel scroll"><table><tr><th>الموقع</th><th>النوع</th><th>تابع لـ</th><th class="num">علب في المخزون</th><th class="num">استلمت من صيدليات</th><th class="num">استلمت من موزعين</th></tr>'+
+   rows.map(function(l){return '<tr><td class="w"><b>'+esc(l.n)+'</b></td><td>'+KIND[l.k]+'</td><td>'+esc(l.o)+'</td><td class="num">'+fmt(l.q)+'</td><td class="num">'+fmt(l.p)+'</td><td class="num">'+fmt(l.d)+'</td></tr>'}).join('')+'</table></div></section>';
+  return h;
+};
+
+function productRows(){
+  var P=PR.filter(function(p){
+    if(S.sel&&p.rg!==S.sel)return false;
+    if(S.q&&nz(p.n+' '+p.mah+' '+p.mfr+' '+p.rn+' '+p.gt).indexOf(nz(S.q))<0)return false;
+    if(S.pf==='pending')return p.rv==='pending';
+    if(S.pf==='stock')return p.q>0;
+    if(S.pf==='nomove')return !p.mv;
+    return true}).sort(function(a,b){return (b.mv-a.mv)||(b.q-a.q)||a.n.localeCompare(b.n)});
+  if(!P.length)return '<tr><td class="empty">مفيش منتجات مطابقة</td></tr>';
+  var h='<tr><th></th><th>المنتج</th><th>الشركة المسجِّلة</th><th>صاحب المنتج</th><th>العبوة</th><th class="num">سعر العلبة (ج)</th><th>التسعير</th><th class="num">في المخزون</th><th class="num">شُحنت لموزعين</th><th class="num">شُحنت لصيدليات</th></tr>';
+  P.slice(0,S.more).forEach(function(p){
+    var o=S.open[p.gt];
+    h+='<tr class="row'+(o?' open':'')+'" data-p="'+p.gt+'"><td><span class="arrow">◂</span></td><td class="w"><b>'+esc(p.n)+'</b><span class="s2">GTIN '+p.gt+'</span></td><td class="w">'+(esc(p.rn)||'-')+'</td><td class="w">'+esc(p.mah)+'<span class="s2">'+esc(p.mfr)+'</span></td><td>'+(esc(p.pk)||'-')+'<span class="s2">'+esc(p.df)+'</span></td><td class="num">'+p.pr.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</td><td>'+(p.rv==='approved'?'<span class="chip paid">معتمد</span>':'<span class="chip warn">بانتظار الاعتماد</span>')+'</td><td class="num">'+(p.mv?'<b>'+fmt(p.q)+'</b>':'-')+'</td><td class="num">'+(p.d?fmt(p.d):'-')+'</td><td class="num">'+(p.p?fmt(p.p):'-')+'</td></tr>';
+    if(o){
+      var mx=Math.max.apply(null,p.st.map(function(l){return Math.max(l.q,l.d,l.p)}).concat([1]));
+      h+='<tr class="det"><td></td><td colspan="9">'+(p.st.length?p.st.map(function(l){return '<div class="loc"><span><b>'+esc(l.n)+'</b> <span style="color:var(--muted);font-size:12px">'+KIND[l.k]+(l.o?' · '+esc(l.o):'')+'</span></span><span class="bar"><b style="width:'+Math.round(Math.max(l.q,l.p,l.d)/mx*100)+'%"></b></span><b>'+fmt(l.q)+' علبة</b><span class="sx" style="color:var(--muted)">شُحن لموزعين '+fmt(l.d)+' · لصيدليات '+fmt(l.p)+'</span></div>'}).join(''):'<span style="color:var(--muted)">مفيش حركة مخزون أو شحن مسجلة للمنتج ده.</span>')+
+       (p.h.length?'<div class="hist">سجل السعر: '+p.h.map(function(x){return x.at+' '+(x.ty==='created'?'تسجيل بسعر '+x.nv:'من '+x.pv+' إلى '+x.nv)}).join(' · ')+'</div>':'')+'</td></tr>';
+    }
+  });
+  var left=P.length-S.more;
+  if(left>0)h+='<tr><td colspan="10" style="text-align:center"><button class="more" data-more>عرض المزيد ('+left+')</button></td></tr>';
+  return h;
+}
+VIEWS.products=function(){
+  var cos=CO.filter(function(c){return c.np>0});
+  var cnt={all:PR.length,pending:PR.filter(function(p){return p.rv==='pending'}).length,stock:PR.filter(function(p){return p.q>0}).length,nomove:PR.filter(function(p){return !p.mv}).length};
+  return '<section><h2>المنتجات والمخزون</h2><p class="q">صاحب كل منتج وسعر العلبة وعدد العلب وأماكنها. اضغط على المنتج لعرض المواقع وسجل السعر.</p><div class="tools">'+
+   '<select data-sel aria-label="الشركة"><option value="">كل الشركات</option>'+cos.map(function(c){return '<option value="'+esc(c.g)+'"'+(S.sel===c.g?' selected':'')+'>'+esc(c.n)+'</option>'}).join('')+'</select>'+
+   '<input type="search" id="pq" placeholder="ابحث باسم المنتج أو الشركة أو GTIN" aria-label="بحث" value="'+esc(S.q)+'" style="flex:1;max-width:320px">'+
+   [['all','الكل'],['pending','بانتظار التسعير'],['stock','عليها مخزون'],['nomove','بدون حركة']].map(function(x){return '<button class="f" data-pf="'+x[0]+'" aria-pressed="'+(S.pf===x[0])+'">'+x[1]+' ('+cnt[x[0]]+')</button>'}).join('')+
+   '</div><div class="panel scroll"><table id="ptable">'+productRows()+'</table></div></section>';
+};
+
+var IS={all:'الكل',PENDING:'غير مدفوعة',PAID:'مدفوعة',CANCELLED:'ملغاة'};
+function invSum(L){var A=L.filter(function(v){return v.st!=='CANCELLED'}),P=A.filter(function(v){return v.st==='PAID'}),U=A.filter(function(v){return v.st==='PENDING'});
+  return {n:A.length,tot:sum(A,function(v){return v.tot}),paid:sum(P,function(v){return v.tot}),unpaid:sum(U,function(v){return v.tot}),np:P.length,nu:U.length,units:sum(A,function(v){return v.u}),canc:L.length-A.length,old:U.length?Math.max.apply(null,U.map(function(v){return v.age})):0}}
+function invChip(v){return v.st==='PAID'?'<span class="chip paid">مدفوعة</span>':v.st==='PENDING'?'<span class="chip bad">غير مدفوعة</span>':'<span class="chip n">ملغاة</span>'}
+VIEWS.invoices=function(){
+  var T=invSum(INV),byc={};
+  INV.forEach(function(v){(byc[v.g]=byc[v.g]||{n:v.n,L:[]}).L.push(v)});
+  var rows=Object.keys(byc).map(function(g){var x=invSum(byc[g].L);x.name=byc[g].n;return x}).sort(function(a,b){return b.unpaid-a.unpaid});
+  var cnt={all:INV.length,PENDING:0,PAID:0,CANCELLED:0};INV.forEach(function(v){cnt[v.st]++});
+  var L=INV.filter(function(v){return (S.ist==='all'||v.st===S.ist)&&(!S.tq||nz(v.no+' '+v.n+' '+v.g).indexOf(nz(S.tq))>-1)});
+  var h='<section><h2>الفواتير والمدفوعات</h2><p class="q">فواتير الخدمة الإلكترونية للشركات صاحبة المنتجات. الإجماليات بدون الفواتير الملغاة، والمبالغ بالجنيه شاملة ضريبة 14%.</p>'+
+   '<div class="grid g5"><div class="tile"><div class="l">فواتير صادرة</div><div class="v">'+T.n+'</div><div class="n">'+T.canc+' ملغاة غير محسوبة</div></div>'+
+   '<div class="tile"><div class="l">إجمالي المبلغ</div><div class="v">'+money(T.tot)+'</div><div class="n">'+fmt(T.units)+' علبة</div></div>'+
+   '<div class="tile"><div class="l">المدفوع</div><div class="v good-t">'+money(T.paid)+'</div><div class="n">'+T.np+' فاتورة ('+pc(T.paid,T.tot)+')</div></div>'+
+   '<div class="tile"><div class="l">غير المدفوع</div><div class="v bad-t">'+money(T.unpaid)+'</div><div class="n">'+T.nu+' فاتورة ('+pc(T.unpaid,T.tot)+')</div></div>'+
+   '<div class="tile"><div class="l">أقدم فاتورة غير مدفوعة</div><div class="v">'+T.old+' يوم</div></div></div>'+
+   '<div class="panel" style="margin-top:12px">'+
+   '<div class="split" style="height:30px;margin:0 0 10px"><b class="sd" style="width:'+pct(T.paid,T.tot)+'%"></b><b class="sb" style="width:'+(100-pct(T.paid,T.tot))+'%"></b></div>'+
+   '<div class="lg"><span><i class="sd"></i>مدفوع <b>'+fmt(T.paid)+'</b> ج</span><span><i style="background:var(--bad)"></i>غير مدفوع <b>'+fmt(T.unpaid)+'</b> ج</span></div></div></section>';
+  h+='<section><h2>الفواتير لكل شركة</h2><div class="panel scroll"><table><tr><th>الشركة</th><th class="num">عدد الفواتير</th><th class="num">العلب</th><th class="num">الإجمالي (ج)</th><th class="num">المدفوع (ج)</th><th class="num">غير المدفوع (ج)</th><th class="num">أقدم غير مدفوعة</th></tr>'+
+   rows.map(function(r){return '<tr><td class="w"><b>'+esc(r.name)+'</b></td><td class="num">'+r.n+(r.canc?'<span class="s2">'+r.canc+' ملغاة إضافية</span>':'')+'</td><td class="num">'+fmt(r.units)+'</td><td class="num">'+fmt(r.tot)+'</td><td class="num good-t">'+fmt(r.paid)+'</td><td class="num '+(r.unpaid?'bad-t':'')+'">'+fmt(r.unpaid)+'</td><td class="num">'+(r.nu?r.old+' يوم':'-')+'</td></tr>'}).join('')+
+   '<tr class="tot"><td>الإجمالي</td><td class="num">'+T.n+'</td><td class="num">'+fmt(T.units)+'</td><td class="num">'+fmt(T.tot)+'</td><td class="num">'+fmt(T.paid)+'</td><td class="num">'+fmt(T.unpaid)+'</td><td></td></tr></table></div></section>';
+  h+='<section><h2>كل الفواتير</h2><div class="tools">'+tqBox('ابحث برقم الفاتورة أو الشركة')+Object.keys(IS).map(function(k){return '<button class="f" data-ist="'+k+'" aria-pressed="'+(S.ist===k)+'">'+IS[k]+' ('+(k==='all'?cnt.all:cnt[k])+')</button>'}).join('')+'</div>'+
+   '<div class="panel scroll"><table><tr><th>رقم الفاتورة</th><th>الشركة</th><th>التاريخ</th><th class="num">العلب</th><th class="num">قبل الضريبة (ج)</th><th class="num">الضريبة (ج)</th><th class="num">الإجمالي (ج)</th><th>الحالة</th><th>تاريخ الدفع</th></tr>'+
+   L.map(function(v){return '<tr><td><bdi dir="ltr">'+esc(v.no)+'</bdi></td><td class="w">'+esc(v.n)+'</td><td><bdi dir="ltr">'+v.at+'</bdi></td><td class="num">'+fmt(v.u)+'</td><td class="num">'+fmt(v.sub)+'</td><td class="num">'+fmt(v.vat)+'</td><td class="num"><b>'+fmt(v.tot)+'</b></td><td>'+invChip(v)+(v.st==='PENDING'?'<span class="s2">منذ '+v.age+' يوم</span>':'')+'</td><td>'+(v.paid?v.paid+'<span class="s2">'+(v.via==='BANK_TRANSFER'?'تحويل بنكي':esc(v.via))+'</span>':'-')+'</td></tr>'}).join('')+'</table></div>'+
+   '<p class="q" style="margin-top:8px">الملف لا يحتوي على تاريخ استحقاق، فمفيش "متأخرة"، والمعروض عمر الفاتورة غير المدفوعة بالأيام.</p></section>';
+  return h;
+};
+
+function REPORT(){
+  var IV=invSum(INV),canc=INV.filter(function(v){return v.st==='CANCELLED'}),cancAmt=sum(canc,function(v){return v.tot});
+  var T=['fac','imp','sci'],cs=['done','verified','draft'],mat=T.map(function(t){var r=cs.map(function(k){return CO.filter(function(c){return c.t===t&&c.st===k}).length});return [TN[t]].concat(r,[sum(r,function(x){return x})])});
+  var tot=['الإجمالي'];for(var j=1;j<5;j++)tot.push(sum(mat,function(r){return r[j]}));mat.push(tot);
+  var byc={};INV.forEach(function(v){(byc[v.g]=byc[v.g]||{n:v.n,L:[]}).L.push(v)});
+  var crow=Object.keys(byc).map(function(g){var x=invSum(byc[g].L);return {n:byc[g].n,x:x}}).sort(function(a,b){return b.x.unpaid-a.x.unpaid}).map(function(r){return [r.n,fmt(r.x.n),fmt(r.x.units),fmt(r.x.tot),fmt(r.x.paid),fmt(r.x.unpaid)]});
+  crow.push(['الإجمالي',fmt(IV.n),fmt(IV.units),fmt(IV.tot),fmt(IV.paid),fmt(IV.unpaid)]);
+  var pend=PR.filter(function(p){return p.rv==='pending'}).length,sq=sum(PR,function(p){return p.q}),sd=sum(PR,function(p){return p.d}),sp=sum(PR,function(p){return p.p});
+  var dt={dis:0,tpl:0,wh:0};DI.forEach(function(d){dt[d.t]++});var dp=D.disp;
+  var o=[
+   {t:'الفواتير',head:['البند','العدد','المبلغ (ج)'],rows:[['إجمالي الفواتير الصادرة',fmt(INV.length),fmt(IV.tot+cancAmt)],['فواتير سارية',fmt(IV.n),fmt(IV.tot)],['مدفوعة',fmt(IV.np),fmt(IV.paid)],['غير مدفوعة',fmt(IV.nu),fmt(IV.unpaid)],['ملغاة',fmt(canc.length),fmt(cancAmt)]],hl:[2,3]},
+   {t:'الفواتير لكل شركة',head:['الشركة','الفواتير','العلب','الإجمالي (ج)','المدفوع (ج)','غير المدفوع (ج)'],rows:crow,total:true},
+   {t:'الشركات حسب النوع ومرحلة التسجيل',head:['النوع','مكتمل','تم التحقق','مسودة','الإجمالي'],rows:mat,total:true,note:'المسجلة فعلاً بدون المسودات: '+CO.filter(function(c){return c.st!=='draft'}).length+' شركة. الإجمالي يشمل المسودات.'},
+   {t:'منتجات قيد التجهيز للتسجيل',head:['البند','العدد'],rows:[['جهّزتها الشركات',fmt(sum(CO,function(c){return c.stg}))],['أكدتها الشركات',fmt(sum(CO,function(c){return c.cf}))],['تخطّتها الشركات',fmt(sum(CO,function(c){return c.sk}))]],note:'أرقام غير نهائية وقد تحتوي تكرار. الرسمي: '+PR.length+' منتج مسجل.'},
+   {t:'المنتجات في السجل',head:['البند','العدد'],rows:[['إجمالي المنتجات',fmt(PR.length)],['سعر معتمد',fmt(PR.length-pend)],['بانتظار اعتماد السعر',fmt(pend)],['منتجات عليها حركة',fmt(PR.filter(function(p){return p.mv}).length)],['علب في المخزون',fmt(sq)],['علب شُحنت لموزعين',fmt(sd)],['علب شُحنت لصيدليات',fmt(sp)]]},
+   {t:'التوزيع واللوجستيات',head:['النوع','العدد'],rows:[['موزع',fmt(dt.dis)],['3PL',fmt(dt.tpl)],['مخزن',fmt(dt.wh)],['الإجمالي',fmt(DI.length)],['مواقع وفروع تابعة',fmt(sum(DI,function(d){return d.sites}))]],hl:[3],note:'التصنيف تقديري من اسم الكيان.'},
+   {t:'نقاط الصرف',head:['النوع','العدد'],rows:[['صيدليات',fmt(dp.pharm)],['مستشفيات',fmt(dp.hosp)],['جهات صحية',fmt(dp.adm)],['الإجمالي',fmt(dp.pharm+dp.hosp+dp.adm)]],hl:[3],note:'التصنيف تقديري من اسم الجهة.'}
+  ];
+  o[1].full=true;return [o[0],o[2],o[1],o[4],o[5],o[6],o[3]];
+}
+VIEWS.report=function(){
+  var R=REPORT(),lg=document.querySelector('.logos');
+  var h='<section><div class="tools"><button class="copybtn" data-copyrep>نسخ التقرير (للصق في Word أو Excel)</button><span class="q" id="copymsg" style="margin:0"></span></div>'+
+   '<div class="rep"><div class="rephead"><div><h3>تقرير تنفيذي موجز عن منظومة EPTTS</h3><div class="sub">بيانات حتى '+'<bdi dir="ltr">'+D.asof+'</bdi> · التتبع على مستوى العلبة · المبالغ بالجنيه المصري</div></div>'+(lg?lg.outerHTML:'')+'</div><div class="repbody">'+
+   R.map(function(x){return '<div'+(x.full?' style="grid-column:1/-1"':'')+'><h4>'+x.t+'</h4><div class="scroll"><table><tr>'+x.head.map(function(c,i){return '<th'+(i?' class="num"':'')+'>'+c+'</th>'}).join('')+'</tr>'+
+    x.rows.map(function(r,ri){var last=x.total&&ri===x.rows.length-1,hl=x.hl&&x.hl.indexOf(ri)>-1;return '<tr'+(last?' class="tot"':'')+'>'+r.map(function(c,i){return '<td'+(i?' class="num"':'')+'>'+(i||last?'<b>':'')+esc(c)+(i||last?'</b>':'')+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'+(x.note?'<p class="q" style="margin:6px 0 0">'+esc(x.note)+'</p>':'')+'</div>'}).join('')+'</div></div></section>';
+  return h;
+};
+function repText(){return REPORT().map(function(x){return x.t+'\n'+x.head.join('\t')+'\n'+x.rows.map(function(r){return r.join('\t')}).join('\n')}).join('\n\n')}
+function copyRep(){var t=repText(),m=$('copymsg');function ok(){m.textContent='تم النسخ'}
+  function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')?ok():m.textContent='تعذر النسخ'}catch(e){m.textContent='تعذر النسخ'}a.remove()}
+  try{navigator.clipboard.writeText(t).then(ok,fallback)}catch(e){fallback()}}
+/* ===== تحديث البيانات من الملفات ===== */
+var REQ=['parties','prods','regs','sp','stock','invoices','stats'];
+var KL={parties:'الأطراف (سجل الجهات)',prods:'منتجات السجل',regs:'طلبات تسجيل الشركات',sp:'منتجات التسجيل الذاتي',stock:'المخزون والشحنات',invoices:'سجل الفواتير',stats:'إحصائيات التسجيل',hist:'سجل الأسعار'};
+var HINT={parties:'registry-parties (CSV)',prods:'registry-products (CSV)',regs:'self-registrations (CSV)',sp:'self-registration-products (CSV)',stock:'stock-shipment (CSV)',invoices:'invoice-register (XLSX أو CSV)',stats:'onboarding-statistics (CSV)',hist:'registry-product-price-history (CSV)'};
+var PEND={},RAW={},META={},UPMSG=[],keepTq=false;
+function idb(op,val){return new Promise(function(res){try{var rq=indexedDB.open('eptts-dash',1);rq.onupgradeneeded=function(){rq.result.createObjectStore('kv')};rq.onerror=function(){res(null)};
+  rq.onsuccess=function(){try{var db=rq.result,tx=db.transaction('kv',op==='get'?'readonly':'readwrite'),st=tx.objectStore('kv');
+   if(op==='get'){var g=st.get('raw');g.onsuccess=function(){res(g.result||null)};g.onerror=function(){res(null)}}
+   else{if(op==='set')st.put(val,'raw');else st.delete('raw');tx.oncomplete=function(){res(true)};tx.onerror=function(){res(false)}}}catch(e){res(null)}}}catch(e){res(null)}})}
+function readFile(f){return new Promise(function(res){var ext=(f.name.split('.').pop()||'').toLowerCase(),fr=new FileReader(),B=window.EPTTS_BUILD;
+  fr.onerror=function(){res({err:'تعذر قراءة '+f.name})};
+  if(ext==='csv'||ext==='txt'){fr.onload=function(){try{var rows=B.parseCSV(fr.result);if(!rows.length)return res({err:f.name+': ملف فارغ'});var k=B.detect(Object.keys(rows[0]));
+     if(k==='invoices')rows=B.invoicesFromCSV(rows);
+     res(k?{items:[{kind:k,rows:rows,name:f.name,ext:'csv'}]}:{err:f.name+': لم أتعرف على نوع الملف من أعمدته'})}catch(e){res({err:f.name+': ملف غير صالح'})}};fr.readAsText(f,'utf-8')}
+  else if(ext==='xlsx'||ext==='xls'){if(!window.XLSX)return res({err:f.name+': مكتبة Excel لم تُحمّل، استخدم CSV أو أعد تحميل الصفحة'});
+   fr.onload=function(){try{var wb=XLSX.read(fr.result,{type:'array'}),items=[];
+     wb.SheetNames.forEach(function(sn){var arr=XLSX.utils.sheet_to_json(wb.Sheets[sn],{header:1,raw:true,defval:''});
+       if(arr.slice(0,10).some(function(r){return r&&r[0]==='Invoice #'})){items.push({kind:'invoices',rows:B.invoicesFromRows(arr),name:f.name,ext:'xlsx'});return}
+       if(!arr.length)return;var h=arr[0].map(String),k=B.detect(h);if(!k)return;
+       items.push({kind:k,rows:arr.slice(1).map(function(r){var o={};h.forEach(function(c,i){o[c]=r[i]==null?'':r[i]});return o}),name:f.name+' ('+sn+')',ext:'xlsx'})});
+     res(items.length?{items:items}:{err:f.name+': لم أتعرف على نوع الملف من أعمدته'})}catch(e){res({err:f.name+': ملف Excel غير صالح'})}};fr.readAsArrayBuffer(f)}
+  else res({err:f.name+': النوع غير مدعوم (CSV أو XLSX فقط)'})})}
+function handleFiles(list){var files=Array.prototype.slice.call(list||[]);if(!files.length)return;UPMSG=['جاري قراءة '+files.length+' ملف...'];render();
+  Promise.all(files.map(readFile)).then(function(rs){UPMSG=[];
+    rs.forEach(function(r){if(r.err){UPMSG.push(r.err);return}
+      r.items.forEach(function(it){var old=PEND[it.kind];if(old&&old.ext==='csv'&&it.ext==='xlsx'){UPMSG.push(it.name+': تم تجاهله لأن ملف CSV لنفس النوع موجود');return}PEND[it.kind]=it})});
+    if(!UPMSG.length)UPMSG=['تمت القراءة. راجع الحالة ثم اضغط تحديث الداشبورد.'];render()})}
+function latestDate(){var best='';Object.keys(PEND).forEach(function(k){var m=PEND[k].name.match(/(\d{4}-\d{2}-\d{2})/);if(m&&m[1]>best)best=m[1]});return best||META.asof||new Date().toISOString().slice(0,10)}
+function applyUpdate(){var T={},miss=[];
+  REQ.concat(['hist']).forEach(function(k){var src=PEND[k]?PEND[k].rows:RAW[k];if(src)T[k]=src;else if(REQ.indexOf(k)>-1)miss.push(KL[k])});
+  if(miss.length){UPMSG=['ناقص: '+miss.join('، ')];render();return}
+  try{var asof=latestDate(),nd=window.EPTTS_BUILD.build({parties:T.parties,prods:T.prods,regs:T.regs,sp:T.sp,stock:T.stock,hist:T.hist||[],stats:T.stats,invoices:T.invoices},asof);
+    setData(nd);Object.keys(PEND).forEach(function(k){RAW[k]=PEND[k].rows;META[k]={name:PEND[k].name,n:PEND[k].rows.length,at:new Date().toISOString().slice(0,16).replace('T',' ')}});
+    PEND={};META.asof=asof;persist({tables:RAW,meta:META,D:nd});UPMSG=['تم تحديث الداشبورد'];S.sel='';S.q='';S.tq='';go('overview')}
+  catch(e){UPMSG=['تعذر بناء الداشبورد: '+((e&&e.message)||'')];render()}}
+function clearStore(){idb('del');RAW={};META={};PEND={};UPMSG=['تم مسح البيانات المحفوظة'];S.sel='';S.q='';S.tq='';setData(D0||{invoices:[],asof:'',companies:[],dist:[],products:[],disp:{pharm:0,hosp:0,adm:0,test:0},sitelocs:[],summ:{},monthly:[],reg_total:0,mfr_sites:0,hist_n:0,hist_src:{}});render()}
+/* ===== الحفظ المشترك على الخادم (Vercel) ===== */
+var SERVER=false,RBYTES=null,KEY='',PUBLIC_DATA=false;try{KEY=sessionStorage.getItem('ek')||'';USER=sessionStorage.getItem('eu')||''}catch(e){}
+function te(x){return new TextEncoder().encode(x)}
+function gz(u8,c){return new Response(new Blob([u8]).stream().pipeThrough(c?new CompressionStream('gzip'):new DecompressionStream('gzip'))).arrayBuffer().then(function(b){return new Uint8Array(b)})}
+function dk(code,salt){return crypto.subtle.importKey('raw',te(code),'PBKDF2',false,['deriveKey']).then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:150000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])})}
+function pack(obj,code){var salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  return gz(te(JSON.stringify(obj)),true).then(function(z){return dk(code,salt).then(function(k){return crypto.subtle.encrypt({name:'AES-GCM',iv:iv},k,z)})}).then(function(c){var o=new Uint8Array(28+c.byteLength);o.set(salt,0);o.set(iv,16);o.set(new Uint8Array(c),28);return o})}
+function unpack(u8,code){var salt=u8.slice(0,16),iv=u8.slice(16,28),c=u8.slice(28);
+  return dk(code,salt).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,c)}).then(function(z){return gz(new Uint8Array(z),false)}).then(function(u){return JSON.parse(new TextDecoder().decode(u))})}
+function persist(st){if(!SERVER){idb('set',st);return}
+  var body=te(JSON.stringify(st));fetch('/api/state',{method:'POST',headers:{'x-user':USER,'x-key':KEY,'content-type':'application/octet-stream'},body:body})
+   .then(function(r){if(r.ok)PUBLIC_DATA=true;UPMSG=[r.ok?'تم الحفظ على الخادم، الداشبورد متاحة لكل من يفتح الرابط':(r.status===401?'بيانات الدخول غير صحيحة، لم يتم الحفظ':'تعذر الحفظ على الخادم ('+r.status+')')];if(location.hash==='#data'||!HAS)render()})
+   .catch(function(){UPMSG=['تعذر الاتصال بالخادم للحفظ'];render()})}
+function loadRemote(){return fetch('/api/state',{cache:'no-store'}).then(function(r){
+    SERVER=true;if(r.status===401){AUTH=false;return false}
+    if(r.status===200){return r.arrayBuffer().then(function(b){RBYTES=new Uint8Array(b);try{var st=JSON.parse(new TextDecoder().decode(RBYTES));if(st&&st.D){RAW=st.tables||{};META=st.meta||{};setData(st.D);PUBLIC_DATA=true}}catch(e){}AUTH=true;return true})}
+    if(r.status===204){PUBLIC_DATA=true;AUTH=true;return true}
+    AUTH=false;return false}).catch(function(){SERVER=false;AUTH=false;return false})}
+function tryOpen(){if(!RBYTES||!KEY)return Promise.resolve(false);
+  return unpack(RBYTES,KEY).then(function(st){RAW=st.tables||{};META=st.meta||{};if(st.D)setData(st.D);return true}).catch(function(){return false})}
+function unlock(code,user){if(!code||!user)return;UPMSG=['جاري التحقق...'];render();
+  var fin=function(ok){if(ok){KEY=code;USER=user;try{sessionStorage.setItem('ek',code);sessionStorage.setItem('eu',user)}catch(e){}UPMSG=[];if(RBYTES&&!PUBLIC_DATA)persist({tables:RAW,meta:META,D:D});if(HAS)go('overview');else render()}else{UPMSG=['بيانات الدخول غير صحيحة'];render()}};
+  if(RBYTES&&!PUBLIC_DATA){KEY=code;tryOpen().then(function(ok){if(!ok)KEY='';fin(ok)})}
+  else fetch('/api/state',{method:'POST',headers:{'x-user':user,'x-key':code,'x-check':'1'}}).then(function(r){fin(r.ok)}).catch(function(){UPMSG=['تعذر الاتصال بالخادم'];render()})}
+VIEWS.data=function(){
+  if(SERVER&&!KEY)return '<section><h2>دخول مسؤول التحديث</h2><p class="q">الداشبورد متاحة للعرض للجميع. أدخل بيانات المسؤول هنا فقط لرفع تحديث جديد.</p><div class="tools"><input id="eu" placeholder="اسم المستخدم" autocomplete="username" style="flex:1;max-width:200px"><input type="password" id="ek" placeholder="كلمة المرور" autocomplete="current-password" style="flex:1;max-width:240px"><button class="copybtn" data-unlock>دخول</button></div>'+(UPMSG.length?'<div class="panel" style="margin-top:12px">'+UPMSG.map(function(x){return '<div>'+esc(x)+'</div>'}).join('')+'</div>':'')+'</section>';
+  var ready=REQ.every(function(k){return PEND[k]||RAW[k]}),h='<section><h2>تحديث البيانات</h2><p class="q">ارفع ملفات التصدير (CSV أو Excel) دفعة واحدة أو على دفعات. تُقرأ الملفات داخل متصفحك، ثم تُحفظ بيانات الداشبورد على السيرفر لتظهر لكل من يفتح الرابط. الملف الجديد بيحل محل القديم من نفس النوع، فتقدر ترفع المتغيّر بس.</p>'+ 
+   '<label class="drop" for="fl"><input type="file" id="fl" multiple accept=".csv,.xlsx,.xls" hidden><b>اسحب الملفات هنا أو اضغط للاختيار</b><span>8 أنواع ملفات: 7 مطلوبة وسجل الأسعار اختياري</span></label>'+
+   '<div class="panel scroll" style="margin-top:12px"><table><tr><th>نوع الملف</th><th>اسم الملف المتوقع</th><th>الحالة</th><th>الملف</th><th class="num">الصفوف</th></tr>'+
+   Object.keys(KL).map(function(k){var p=PEND[k],m=META[k],st,fn='-',n='-';
+     if(p){st='<span class="chip warn">جاهز للتحديث</span>';fn=esc(p.name);n=fmt(p.rows.length)}
+     else if(RAW[k]){st='<span class="chip paid">محفوظ</span>';fn=esc((m&&m.name)||'');n=fmt(RAW[k].length)+(m&&m.at?'<span class="s2">'+esc(m.at)+'</span>':'')}
+     else st=REQ.indexOf(k)>-1?'<span class="chip bad">ناقص</span>':'<span class="chip n">اختياري</span>';
+     return '<tr><td><b>'+KL[k]+'</b></td><td style="color:var(--muted)">'+HINT[k]+'</td><td>'+st+'</td><td class="w">'+fn+'</td><td class="num">'+n+'</td></tr>'}).join('')+'</table></div>'+
+   '<div class="tools" style="margin-top:12px"><button class="copybtn" data-apply'+(ready&&Object.keys(PEND).length?'':' disabled')+'>تحديث الداشبورد</button>'+(Object.keys(RAW).length&&!SERVER?'<button class="f" data-clearstore>مسح البيانات المحفوظة</button>':'')+'</div>'+
+   (UPMSG.length?'<div class="panel" style="margin-top:12px">'+UPMSG.map(function(x){return '<div>'+esc(x)+'</div>'}).join('')+'</div>':'')+
+   '<p class="q" style="margin-top:10px">ملف الأطراف يُفضّل بصيغة CSV لأن نسخة Excel منه فيها أحدث 5000 سجل فقط. البيانات المحفوظة تبقى في هذا المتصفح لحد ما تمسحها.</p></section>';
+  return h;
+};
+/* ===== البحث العام ===== */
+function gsearch(q){var nq=nz(q),box=$('gsr');if(nq.length<2){box.hidden=true;return}
+  var G=[];function add(t,items){if(items.length)G.push([t,items])}
+  add('الشركات',CO.map(function(c,i){return {k:'co|'+i,a:c.n,b:TN[c.t]+' · '+STL[c.st],m:nz(c.n+' '+c.a+' '+c.g)}}).filter(function(x){return x.m.indexOf(nq)>-1}).slice(0,5));
+  add('المنتجات',PR.map(function(p){return {k:'pr|'+p.gt,a:p.n,b:'GTIN '+p.gt+(p.rn?' · '+p.rn:''),m:nz(p.n+' '+p.mah+' '+p.mfr+' '+p.rn+' '+p.gt)}}).filter(function(x){return x.m.indexOf(nq)>-1}).slice(0,6));
+  add('التوزيع واللوجستيات',DI.map(function(d,i){return {k:'di|'+i,a:d.n,b:TN[d.t]+(d.gov?' · '+d.gov:''),m:nz(d.n+' '+d.a)}}).filter(function(x){return x.m.indexOf(nq)>-1}).slice(0,4));
+  add('الفواتير',INV.map(function(v,i){return {k:'inv|'+i,a:v.no,b:v.n+' · '+IS[v.st],m:nz(v.no+' '+v.n+' '+v.g)}}).filter(function(x){return x.m.indexOf(nq)>-1}).slice(0,4));
+  add('مواقع الصرف والتخزين',D.sitelocs.map(function(l,i){return {k:'st|'+i,a:l.n,b:KIND[l.k]+(l.o?' · '+l.o:''),m:nz(l.n+' '+l.o+' '+l.g)}}).filter(function(x){return x.m.indexOf(nq)>-1}).slice(0,4));
+  box.innerHTML=G.length?G.map(function(g){return '<div class="gsh">'+g[0]+'</div>'+g[1].map(function(x){return '<button class="gsi" data-sr="'+esc(x.k)+'"><b>'+esc(x.a)+'</b><span>'+esc(x.b)+'</span></button>'}).join('')}).join(''):'<div class="gsh">لا نتائج</div>';
+  box.hidden=false}
+function pickResult(key){var a=key.split('|'),t=a[0],v=a.slice(1).join('|');$('gsr').hidden=true;$('gs').value='';
+  if(t==='co'){var c=CO[+v];S.ctf='all';S.cst='all';if(c.np>0){S.sel=c.g;S.pf='all';S.q='';S.more=25;go('products')}else{S.tq=c.n;keepTq=true;go('companies')}}
+  else if(t==='pr'){S.sel='';S.pf='all';S.q=v;S.open[v]=true;S.more=25;go('products')}
+  else if(t==='di'){S.tq=DI[+v].n;keepTq=true;go('distribution')}
+  else if(t==='inv'){S.ist='all';S.tq=INV[+v].no;keepTq=true;go('invoices')}
+  else if(t==='st'){S.tq=D.sitelocs[+v].n;keepTq=true;go('dispensing')}}
+/* ===== تسجيل الدخول ===== */
+var AUTH=true,USER='',VIEW_KEY='',HASH='ea204f3708a4c0859f6d400730ce3c2b43a2bddd7c61f26b3b16e3ad2dceb623';
+try{VIEW_KEY=sessionStorage.getItem('ev')||''}catch(e){}
+var READY=Promise.resolve();
+document.body.appendChild($('login'));
+function sha(x){return crypto.subtle.digest('SHA-256',te(x)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(v){return ('0'+v.toString(16)).slice(-2)}).join('')})}
+function setAuth(u,p){AUTH=true;USER=u;try{sessionStorage.setItem('eauth','1');sessionStorage.setItem('eu',u);if(SERVER)sessionStorage.setItem('ek',p)}catch(e){}}
+function doLogin(u,p){var er=$('lerr'),bt=$('lb');er.textContent='';bt.disabled=true;
+  READY.then(function(){
+    if(SERVER){return fetch('/api/state',{method:'POST',headers:{'x-user':u,'x-key':p,'x-check':'1'}}).then(function(r){
+      if(!r.ok)throw new Error(r.status===401?'اسم المستخدم أو كلمة المرور غير صحيحة':'تعذر الاتصال بالخادم');
+      KEY=p;USER=u;return tryOpen().then(function(ok){if(RBYTES&&!ok){KEY='';throw new Error('تعذر فتح البيانات المحفوظة')}setAuth(u,p);if(ok&&!PUBLIC_DATA)persist({tables:RAW,meta:META,D:D})})})}
+    return sha(u+':'+p).then(function(h){if(h!==HASH)throw new Error('اسم المستخدم أو كلمة المرور غير صحيحة');setAuth(u,p)})})
+  .then(function(){$('lp').value='';location.hash='#overview';render()})
+  .catch(function(e){er.textContent=(e&&e.message)||'تعذر تسجيل الدخول'})
+  .then(function(){bt.disabled=false})}
+function doViewerLogin(p){var er=$('lerr'),bt=$('lb');er.textContent='';bt.disabled=true;
+  READY.then(function(){return loadRemote(p)}).then(function(ok){if(!ok)throw new Error(SERVER?'كلمة المرور غير صحيحة':'تعذر الاتصال بالخادم');VIEW_KEY=p;try{sessionStorage.setItem('ev',p)}catch(e){}location.hash='#overview';render()})
+  .catch(function(e){er.textContent=(e&&e.message)||'تعذر تسجيل الدخول'}).then(function(){bt.disabled=false})}
+function logout(){AUTH=true;KEY='';USER='';VIEW_KEY='';try{sessionStorage.clear()}catch(e){}render()}
+function route(){var r=(location.hash||'#overview').slice(1);return VIEWS[r]?r:'overview'}
+function render(){
+  document.body.classList.toggle('locked',!AUTH);$('login').hidden=AUTH;
+  if(!AUTH){var ll=$('llogos');if(ll&&!ll.firstChild){var lg=document.querySelector('.top .logos');if(lg)ll.appendChild(lg.cloneNode(true))}return}
+  var r=route();
+  document.querySelector('[data-logout]').hidden=(r!=='data');
+  try{document.body.setAttribute('data-r',r)}catch(e){}
+  $('exbtn').hidden=!(window.docx&&HAS);$('gsw').hidden=false;
+  $('note').hidden=!HAS;$('note').innerHTML='<b>بيانات حقيقية</b> من ملفات التصدير بتاريخ <bdi dir="ltr">'+esc(D.asof)+'</bdi>.';
+  $('links').innerHTML=ROUTES.map(function(x){return '<a href="#'+x[0]+'"'+(x[0]===r?' aria-current="page"':'')+'>'+x[1]+'</a>'}).join('');
+  $('title').textContent=ROUTES.filter(function(x){return x[0]===r})[0][1];
+  var cn=S.sel?CO.filter(function(c){return c.g===S.sel})[0]:null;
+  $('badge').innerHTML=(cn&&r==='products')?'<span class="badge">'+esc(cn.n)+' <button data-clear aria-label="إلغاء التصفية">✕</button></span>':'';
+  $('view').innerHTML=VIEWS[r]();
+  if(fxOn){var v=$('view');v.classList.remove('fx');void v.offsetWidth;v.classList.add('fx');clearTimeout(fxT);fxT=setTimeout(function(){v.classList.remove('fx')},1200);fxOn=false}
+}
+function go(r){if(location.hash==='#'+r){render();keepTq=false}else location.hash=r}
+window.addEventListener('hashchange',function(){S.more=25;if(!keepTq)S.tq='';keepTq=false;fxOn=true;render();window.scrollTo(0,0)});
+document.addEventListener('click',function(e){
+  var t=e.target,b;
+  if(b=t.closest('[data-sr]')){pickResult(b.getAttribute('data-sr'));return}
+  if(!t.closest('.gsw')){var gr=$('gsr');if(gr)gr.hidden=true}
+  if(t.closest('[data-apply]')){applyUpdate();return}
+  if(t.closest('[data-unlock]')){unlock($('ek').value,$('eu').value.trim());return}
+  if(t.closest('[data-clearstore]')){clearStore();return}
+  if(t.closest('[data-logout]')){logout();return}
+  if(t.closest('[data-copyrep]')){copyRep();return}
+  if(t.closest('[data-exportdoc]')){exportDoc();return}
+  if(t.closest('[data-clear]')){S.sel='';render();return}
+  if(b=t.closest('[data-go]')){
+    if(b.hasAttribute('data-pf')){S.pf=b.getAttribute('data-pf');S.sel='';S.q=''}
+    if(b.hasAttribute('data-cst')){S.cst=b.getAttribute('data-cst');S.ctf='all'}else if(b.getAttribute('data-go')==='companies'){S.cst='all';S.ctf='all'}
+    go(b.getAttribute('data-go'));return}
+  if(b=t.closest('tr[data-c]')){S.sel=b.getAttribute('data-c');S.pf='all';S.q='';S.more=25;go('products');return}
+  if(b=t.closest('tr[data-p]')){var id=b.getAttribute('data-p');S.open[id]=!S.open[id];$('ptable').innerHTML=productRows();return}
+  if(b=t.closest('[data-ist]')){S.ist=b.getAttribute('data-ist');render();return}
+  if(b=t.closest('[data-ctf]')){S.ctf=b.getAttribute('data-ctf');render();return}
+  if(b=t.closest('button[data-cst]')){S.cst=b.getAttribute('data-cst');render();return}
+  if(b=t.closest('button[data-pf]')){S.pf=b.getAttribute('data-pf');S.more=25;render();return}
+  if(t.closest('[data-more]')){S.more+=25;$('ptable').innerHTML=productRows();return}
+});
+document.addEventListener('submit',function(e){if(e.target.id==='lf'){e.preventDefault();doViewerLogin($('lp').value)}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var g=$('gsr');if(g)g.hidden=true}});
+document.addEventListener('dragover',function(e){if(e.target.closest&&e.target.closest('.drop'))e.preventDefault()});
+document.addEventListener('drop',function(e){if(e.target.closest&&e.target.closest('.drop')){e.preventDefault();handleFiles(e.dataTransfer.files)}});
+document.addEventListener('change',function(e){if(e.target.id==='fl'){handleFiles(e.target.files);return}if(e.target.hasAttribute('data-sel')){S.sel=e.target.value;S.more=25;render()}});
+document.addEventListener('input',function(e){
+  if(e.target.id==='gs'){gsearch(e.target.value);return}
+  if(e.target.hasAttribute('data-tq')){S.tq=e.target.value;var pos=e.target.selectionStart;render();var el=$('tq');if(el){el.focus();try{el.setSelectionRange(pos,pos)}catch(x){}}return}if(e.target.id==='pq'){S.q=e.target.value.trim();S.more=25;$('ptable').innerHTML=productRows()}});
+/* تصدير Word من الصفحة: الملف يُبنى في المتصفح من نفس أرقام التقرير */
+var DL=null;
+function dlInit(){try{if(window.claude&&window.claude.use){window.claude.use('downloads').then(function(d){DL=d;if(d)render()},function(){})}}catch(e){}}
+function b64bytes(src){var b=atob(src.split(',')[1]),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
+function arDate(s){var a=s.split('-');return (+a[2])+' '+MON[+a[1]]+' '+a[0]}
+function buildDoc(){
+  var X=window.docx,NAVY='17307F',GOLD='B8912C',SOFT='E8ECF7',ALT='F4F6FA',LINE='D5DBE7',INK='0F1A33',MUTED='586379',FONT='Arial',AL=X.AlignmentType;
+  var none={style:X.BorderStyle.NONE,size:0,color:'FFFFFF'},noB={top:none,bottom:none,left:none,right:none},thin={style:X.BorderStyle.SINGLE,size:4,color:LINE},cellB={top:thin,bottom:thin,left:thin,right:thin};
+  var noTB={top:none,bottom:none,left:none,right:none,insideHorizontal:none,insideVertical:none};
+  function run(t,o){o=o||{};return new X.TextRun({text:String(t),font:FONT,rightToLeft:true,size:o.size||19,bold:o.bold,color:o.color||INK})}
+  function para(t,o){o=o||{};return new X.Paragraph({bidi:true,alignment:o.align||AL.START,spacing:{before:o.before||0,after:o.after||0},keepNext:o.keepNext,children:[run(t,o)]})}
+  function cell(t,w,o){o=o||{};return new X.TableCell({width:{size:w,type:X.WidthType.DXA},borders:cellB,verticalAlign:X.VerticalAlign.CENTER,margins:{top:50,bottom:50,left:90,right:90},shading:o.fill?{type:X.ShadingType.CLEAR,fill:o.fill,color:'auto'}:undefined,children:[para(t,{bold:o.bold,color:o.color,align:o.align||AL.CENTER,size:o.size})]})}
+  function mk(sec,W){
+    var n=sec.head.length,first=n>=5?Math.round(W*0.34):n===3?Math.round(W*0.46):Math.round(W*0.62),rest=Math.floor((W-first)/(n-1)),cw=[W-rest*(n-1)].concat(Array(n-1).fill(rest));
+    var hd=sec.head.map(function(h,i){return cell(h,cw[i],{fill:NAVY,bold:true,color:'FFFFFF',align:i?AL.CENTER:AL.START,size:18})});
+    var rows=[new X.TableRow({tableHeader:true,cantSplit:true,children:hd.slice().reverse()})];
+    sec.rows.forEach(function(r,ri){var last=sec.total&&ri===sec.rows.length-1,hl=sec.hl&&sec.hl.indexOf(ri)>-1,fill=(last||hl)?SOFT:(ri%2?ALT:undefined);
+      var cs=r.map(function(c,i){return cell(c,cw[i],{fill:fill,bold:i>0||last||hl,align:i?AL.CENTER:AL.START})});
+      rows.push(new X.TableRow({cantSplit:true,children:cs.reverse()}))});
+    return new X.Table({width:{size:W,type:X.WidthType.DXA},columnWidths:cw.slice().reverse(),rows:rows});
+  }
+  function block(sec,W){var k=[new X.Paragraph({bidi:true,alignment:AL.START,keepNext:true,spacing:{before:160,after:60},children:[run(sec.t,{bold:true,color:NAVY,size:22})]}),mk(sec,W)];if(sec.note)k.push(para(sec.note,{size:16,color:MUTED,before:40}));return k}
+  var PW=9906,H=Math.floor((PW-200)/2),R=REPORT(),S={};R.forEach(function(x){S[x.t]=x});
+  var imgs=document.querySelectorAll('.top .logos img'),logoRuns=[];
+  if(imgs.length>=2){logoRuns=[new X.ImageRun({type:'png',data:b64bytes(imgs[0].getAttribute('src')),transformation:{width:50,height:56}}),new X.TextRun({text:'   ',font:FONT}),new X.ImageRun({type:'png',data:b64bytes(imgs[1].getAttribute('src')),transformation:{width:100,height:49}})]}
+  var hdr=new X.Table({width:{size:PW,type:X.WidthType.DXA},columnWidths:[3200,6706],borders:noTB,rows:[new X.TableRow({children:[
+    new X.TableCell({width:{size:3200,type:X.WidthType.DXA},borders:noB,verticalAlign:X.VerticalAlign.CENTER,children:[new X.Paragraph({alignment:AL.LEFT,children:logoRuns})]}),
+    new X.TableCell({width:{size:6706,type:X.WidthType.DXA},borders:noB,verticalAlign:X.VerticalAlign.CENTER,children:[para('تقرير تنفيذي موجز عن منظومة EPTTS',{bold:true,size:34,color:NAVY}),para('التتبع والتعقّب للمنتجات الدوائية على مستوى العلبة',{size:19,color:MUTED,before:40}),para('بيانات حتى '+arDate(D.asof)+' · المبالغ بالجنيه المصري',{size:19,color:MUTED})]})]})]});
+  var rule=new X.Paragraph({spacing:{before:80,after:40},border:{bottom:{style:X.BorderStyle.SINGLE,size:18,color:GOLD,space:1}},children:[]});
+  function pair(a,b){
+    function c(sec){return new X.TableCell({width:{size:H,type:X.WidthType.DXA},borders:noB,verticalAlign:X.VerticalAlign.TOP,children:sec?block(sec,H-220):[para('')]})}
+    var gap=new X.TableCell({width:{size:200,type:X.WidthType.DXA},borders:noB,children:[para('')]});
+    return new X.Table({width:{size:PW,type:X.WidthType.DXA},columnWidths:[H,200,H],borders:noTB,rows:[new X.TableRow({children:[c(b),gap,c(a)]})]});
+  }
+  var sp=function(){return new X.Paragraph({spacing:{after:40},children:[]})};
+  var kids=[hdr,rule].concat(block(S['الفواتير'],PW),block(S['الفواتير لكل شركة'],PW),[sp(),pair(S['الشركات حسب النوع ومرحلة التسجيل'],S['المنتجات في السجل']),sp(),pair(S['التوزيع واللوجستيات'],S['نقاط الصرف']),sp(),pair(S['منتجات قيد التجهيز للتسجيل'],null)]);
+  return new X.Document({creator:'EPTTS',title:'تقرير تنفيذي موجز عن منظومة EPTTS',styles:{default:{document:{run:{font:FONT,size:19}}}},
+    sections:[{properties:{page:{size:{width:11906,height:16838},margin:{top:800,bottom:800,left:1000,right:1000}}},
+      footers:{default:new X.Footer({children:[new X.Paragraph({bidi:true,alignment:AL.CENTER,children:[run('مصدر البيانات: ملفات التصدير من الهيئة المصرية للدواء وداف',{size:16,color:MUTED})]})]})},children:kids}]});
+}
+function exportDoc(){var m=$('actmsg');
+  if(!window.docx){m.textContent='مكتبة Word لم تُحمّل، أعد تحميل الصفحة';return}
+  m.textContent='جاري تجهيز الملف...';var fn='EPTTS-Executive-Report-'+D.asof+'.docx';
+  try{window.docx.Packer.toBlob(buildDoc()).then(function(b){
+      if(DL)return DL.save({filename:fn,data:b}).then(function(){m.textContent='تم الحفظ'});
+      var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);m.textContent='تم تجهيز الملف'
+    }).catch(function(e){m.textContent=(e&&e.code==='declined')?'تم إلغاء الحفظ':'تعذر حفظ الملف'})}
+  catch(e){m.textContent='تعذر تجهيز الملف'}}
+$('asof').textContent='التتبع على مستوى العلبة · الأسعار بالجنيه المصري';
+render();dlInit();
+READY=loadRemote().then(function(){if(!SERVER)return idb('get').then(function(st){if(st&&st.tables){RAW=st.tables;META=st.meta||{};if(st.D)setData(st.D)}})}).then(function(){AUTH=true;render()});
+</script>
+</body></html>
